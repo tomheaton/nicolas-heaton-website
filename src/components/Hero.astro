@@ -1,0 +1,139 @@
+---
+import Logo from "@/assets/logo.svg";
+import HeroFan from "@/components/HeroFan.astro";
+import Button from "@/components/ui/Button.astro";
+import { SITE } from "@/constants/site.ts";
+---
+
+<section class="hero" id="top">
+  <HeroFan />
+  <div class="hero-inner">
+    <Logo class="hero-logo" role="img" aria-label="Nicolas Heaton Hairdresser" />
+    <p class="eyebrow">Malmesbury · Wiltshire · Est. 2026</p>
+    <p class="hero-tag">Considered hair, cut with precision.</p>
+    <p class="hero-sub">
+      A calm, unhurried chair where every cut, colour, and finish is shaped around you — and built
+      to grow out beautifully. Appointments by phone.
+    </p>
+    <div class="hero-cta">
+      <Button href={`tel:${SITE.phone}`} variant="solid">
+        Call {SITE.phoneDisplay}
+      </Button>
+      <Button href="#services">See the price list</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px var(--gutter) 60px;
+    overflow: hidden;
+    background: radial-gradient(
+      120% 80% at 50% 20%,
+      #1f1b18 0%,
+      var(--color-onyx) 55%,
+      var(--color-onyx-deep) 100%
+    );
+  }
+
+  /* scrim: keeps the lockup and copy readable where the rays run behind them */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 48% 44% at 50% 44%,
+        rgba(14, 12, 11, 0.9) 0%,
+        rgba(14, 12, 11, 0.6) 52%,
+        rgba(14, 12, 11, 0) 78%
+      ),
+      linear-gradient(180deg, rgba(14, 12, 11, 0.8) 0%, rgba(14, 12, 11, 0) 20%),
+      linear-gradient(0deg, rgba(14, 12, 11, 0.72) 0%, rgba(14, 12, 11, 0) 16%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-logo {
+    width: min(520px, 74vw);
+    aspect-ratio: 1.1839;
+    height: auto;
+    color: var(--color-ivory);
+    animation: rise 1s ease 0.35s both;
+  }
+
+  .hero .eyebrow {
+    margin: 2.2rem 0 1rem;
+  }
+
+  .hero-tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    font-size: clamp(1.4rem, 3.3vw, 2.25rem);
+    line-height: 1.24;
+    max-width: 20ch;
+    margin: 0 auto;
+    color: var(--color-ivory);
+  }
+
+  .hero-sub {
+    color: rgba(245, 240, 230, 0.8);
+    max-width: 44ch;
+    margin: 1.4rem auto 2.3rem;
+    font-size: 1.02rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .hero::after {
+      background:
+        radial-gradient(
+          ellipse 78% 42% at 50% 42%,
+          rgba(14, 12, 11, 0.92) 0%,
+          rgba(14, 12, 11, 0.62) 55%,
+          rgba(14, 12, 11, 0) 82%
+        ),
+        linear-gradient(180deg, rgba(14, 12, 11, 0.85) 0%, rgba(14, 12, 11, 0) 22%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-logo {
+      opacity: 1;
+    }
+  }
+</style>

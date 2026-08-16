@@ -1,0 +1,146 @@
+---
+import SectionHead from "@/components/ui/SectionHead.astro";
+import { SERVICES } from "@/constants/content.ts";
+---
+
+<section class="section jade" id="services">
+  <div class="wrap center">
+    <SectionHead
+      eyebrow="Price List"
+      title="What we do"
+      lede="Prices are a starting point. The final quote is confirmed at consultation, before anything begins."
+      ruleClass="mt-6 mb-[1.6rem]"
+    />
+    <div class="menu">
+      {
+        SERVICES.map((service, i) => (
+          <div class="item reveal" data-delay={i % 2 === 1 ? "1" : undefined}>
+            <div class="item-head">
+              <h3>{service.name}</h3>
+              <span class="leader" />
+              <span class="price">{service.price}</span>
+            </div>
+            <p>{service.blurb}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="menu-note reveal">
+      Long or thick hair may take longer — we'll tell you the price before we
+      start, not after.
+    </p>
+  </div>
+</section>
+
+<style>
+  .jade {
+    background: var(--color-jade);
+    color: var(--color-ivory);
+    position: relative;
+  }
+
+  .jade::before,
+  .jade::after {
+    content: "";
+    position: absolute;
+    left: var(--gutter);
+    right: var(--gutter);
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(229, 211, 166, 0.35),
+      transparent
+    );
+  }
+
+  .jade::before {
+    top: 14px;
+  }
+
+  .jade::after {
+    bottom: 14px;
+  }
+
+  .menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 clamp(40px, 6vw, 80px);
+    margin-top: clamp(38px, 5vw, 60px);
+    text-align: left;
+  }
+
+  .item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(229, 211, 166, 0.18);
+  }
+
+  .item-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .item-head h3 {
+    font-size: 1.28rem;
+    white-space: nowrap;
+  }
+
+  .price {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--color-champagne);
+    white-space: nowrap;
+  }
+
+  .item p {
+    margin: 0.5rem 0 0;
+    font-size: 0.94rem;
+    color: rgba(245, 240, 230, 0.68);
+    max-width: 40ch;
+  }
+
+  .menu-note {
+    margin-top: 2.4rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: rgba(245, 240, 230, 0.6);
+    text-align: center;
+  }
+
+  .leader {
+    flex: 1 1 auto;
+    height: 1px;
+    background-image: radial-gradient(
+      circle,
+      rgba(229, 211, 166, 0.55) 1px,
+      transparent 1.2px
+    );
+    background-size: 6px 1px;
+    background-repeat: repeat-x;
+    transform: translateY(3px);
+  }
+
+  @media (max-width: 940px) {
+    .menu {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .item-head {
+      flex-wrap: wrap;
+    }
+
+    .item-head h3 {
+      white-space: normal;
+    }
+
+    .leader {
+      min-width: 24px;
+    }
+  }
+</style>

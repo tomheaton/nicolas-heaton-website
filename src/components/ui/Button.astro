@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  variant?: "outline" | "solid" | "on-light";
+}
+
+const { href, variant = "outline", class: className, ...rest } = Astro.props;
+const classes = [
+  "btn",
+  variant === "solid" ? "solid" : "",
+  variant === "on-light" ? "on-light" : "",
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<a href={href} class={[classes, className].filter(Boolean).join(" ")} {...rest}>
+  <slot />
+</a>

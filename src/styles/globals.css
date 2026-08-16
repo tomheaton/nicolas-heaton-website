@@ -1,0 +1,385 @@
+@import "tailwindcss";
+
+@theme {
+  --color-onyx: #141210;
+  --color-onyx-deep: #0e0c0b;
+  --color-onyx-raised: #1d1a17;
+  --color-jade: #16362f;
+  --color-jade-deep: #102721;
+  --color-ivory: #f5f0e6;
+  --color-ivory-shade: #ece4d4;
+  --color-brass: #c09553;
+  --color-champagne: #e5d3a6;
+  --color-ash: #b4aca0;
+  --color-ink: #141210;
+  --color-ink-muted: #5c5449;
+
+  --font-display: var(--font-syne), "Futura", sans-serif;
+  --font-sans: var(--font-outfit), "Helvetica Neue", sans-serif;
+
+  --tracking-display: -0.012em;
+  --tracking-caps: 0.1em;
+  --tracking-mid: 0.18em;
+  --tracking-wide: 0.32em;
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 940px;
+  --breakpoint-lg: 1500px;
+
+  --radius-*: initial;
+}
+
+:root {
+  --maxw: 1240px;
+  --gutter: clamp(20px, 5vw, 80px);
+  --section-y: clamp(72px, 11vw, 148px);
+  --measure: 62ch;
+}
+
+/* ---------- base ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  [id] {
+    scroll-margin-top: 96px;
+  }
+
+  body {
+    background-color: var(--color-onyx);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: clamp(15.5px, 0.55vw + 14px, 17.5px);
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    margin: 0;
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: clamp(2.1rem, 5.1vw, 3.6rem);
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    margin: 0 0 1.1rem;
+  }
+}
+
+/* ---------- shared layout utilities ---------- */
+@utility wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+@utility center {
+  text-align: center;
+
+  & .lede {
+    margin-inline: auto;
+  }
+}
+
+@utility lede {
+  font-size: clamp(1.02rem, 0.5vw + 0.9rem, 1.18rem);
+  max-width: 46ch;
+}
+
+@utility light {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+
+  & .lede,
+  & p {
+    color: var(--color-ink-muted);
+  }
+
+  & h2 {
+    color: var(--color-ink);
+  }
+}
+
+/* ---------- motif: hairline + diamond rule ---------- */
+@utility rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-inline: auto;
+
+  & i {
+    display: block;
+    height: 1px;
+    width: clamp(40px, 14vw, 150px);
+    background: linear-gradient(90deg, transparent, var(--color-brass));
+  }
+
+  & b + i {
+    background: linear-gradient(90deg, var(--color-brass), transparent);
+  }
+
+  & b {
+    width: 9px;
+    height: 9px;
+    transform: rotate(45deg);
+    border: 1px solid var(--color-brass);
+    display: block;
+  }
+
+  &.tight i {
+    width: clamp(28px, 8vw, 70px);
+  }
+
+  &.left {
+    justify-content: flex-start;
+    margin-inline: 0;
+    margin-block: 1.6rem 1.8rem;
+
+    & i:first-child {
+      width: 56px;
+      background: linear-gradient(90deg, var(--color-brass), transparent);
+    }
+
+    & i:last-child {
+      width: 0;
+    }
+  }
+}
+
+/* ---------- motif: stepped bracket frame ---------- */
+@utility frame {
+  position: relative;
+  border: 1px solid rgba(192, 149, 83, 0.2);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--color-brass);
+    pointer-events: none;
+  }
+
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  &.on-light {
+    border-color: rgba(20, 18, 16, 0.14);
+  }
+}
+
+/* ---------- motif: button with fill sweep ---------- */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-mid);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.05em 1.9em;
+  border: 1px solid var(--color-brass);
+  color: var(--color-champagne);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  transition:
+    color 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.38s cubic-bezier(0.2, 0.7, 0.2, 1);
+    z-index: -1;
+  }
+
+  &:hover {
+    color: var(--color-onyx);
+    border-color: var(--color-brass);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  &.solid {
+    background: var(--color-brass);
+    color: var(--color-onyx);
+
+    &::after {
+      background: var(--color-champagne);
+    }
+  }
+
+  &.on-light {
+    color: var(--color-ink);
+    border-color: rgba(20, 18, 16, 0.45);
+
+    &:hover {
+      color: var(--color-onyx);
+    }
+  }
+}
+
+/* ---------- motif: eyebrow label ---------- */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-brass);
+  margin: 0 0 1.1rem;
+}
+
+/* ---------- motif: framed info panel ---------- */
+@utility panel {
+  padding: clamp(24px, 3.2vw, 38px);
+
+  & h3 {
+    font-size: 1.18rem;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    margin-bottom: 1.3rem;
+    color: var(--color-champagne);
+  }
+}
+
+/* ---------- motif: scroll reveal ---------- */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- motion: hero fan rays ----------
+   `.lit` is toggled onto the hero via JS in HeroFan, so this stays
+   global (the class crosses the Hero/HeroFan component boundary). */
+.ray {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  opacity: 0;
+}
+
+.lit .ray {
+  animation: fan 1.15s cubic-bezier(0.16, 0.9, 0.24, 1) forwards;
+}
+
+@keyframes fan {
+  from {
+    opacity: 0;
+    transform: rotate(0deg) scaleY(0.18);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--a)) scaleY(1);
+  }
+}
+
+[data-delay="1"] {
+  transition-delay: 0.09s;
+}
+
+[data-delay="2"] {
+  transition-delay: 0.18s;
+}
+
+[data-delay="3"] {
+  transition-delay: 0.27s;
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --maxw: 1400px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: must override all animation/transition declarations */
+    animation-duration: 0.001ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must override all animation/transition declarations */
+    animation-delay: 0s !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must override all animation/transition declarations */
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* content stays visible without JS */
+html:not(.js) .reveal {
+  opacity: 1;
+  transform: none;
+}

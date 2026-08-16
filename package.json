@@ -1,0 +1,45 @@
+{
+  "name": "nicolas-heaton-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A website for Nicolas Heaton Hairdresser.",
+  "keywords": [],
+  "license": "MIT",
+  "author": "tomheaton",
+  "type": "module",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "clean": "rm -rf dist .astro node_modules",
+    "dev": "astro dev",
+    "lint": "biome check",
+    "lint:ci": "biome ci",
+    "lint:fix": "biome check --fix",
+    "preview": "astro preview",
+    "svg": "svgo -rf . -o .",
+    "typecheck": "astro check",
+    "unused": "knip --cache"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "latest",
+    "@lucide/astro": "^1.31.0",
+    "@vercel/analytics": "^2.0.1",
+    "astro": "^7.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@biomejs/biome": "^2.4.15",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^24.13.3",
+    "knip": "^6.32.2",
+    "sharp": "^0.35.3",
+    "svgo": "^4.0.2",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "pnpm@11.11.0",
+  "engines": {
+    "node": "24.x",
+    "pnpm": "11.x"
+  }
+}

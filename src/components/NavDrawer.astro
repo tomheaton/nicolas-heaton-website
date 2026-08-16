@@ -1,0 +1,100 @@
+---
+import Rule from "@/components/ui/Rule.astro";
+import { NAV } from "@/constants/nav.ts";
+import { SITE } from "@/constants/site.ts";
+---
+
+<div class="drawer" id="drawer">
+  <button class="close" id="close" type="button" aria-label="Close menu">
+    &times;
+  </button>
+  {NAV.map((item) => (
+    <a href={item.href}>{item.label}</a>
+  ))}
+  <Rule tight class="mt-[0.6rem]" />
+  <a class="phone" href={`tel:${SITE.phone}`}>
+    {SITE.phoneDisplay}
+  </a>
+</div>
+
+<script>
+  const drawer = document.getElementById("drawer");
+  const burger = document.getElementById("burger");
+  const close = document.getElementById("close");
+
+  const setMenu = (open: boolean) => {
+    drawer?.classList.toggle("open", open);
+    burger?.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  burger?.addEventListener("click", () => setMenu(true));
+  close?.addEventListener("click", () => setMenu(false));
+  drawer?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
+  });
+</script>
+
+<style>
+  .drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: var(--color-onyx-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.4s ease,
+      visibility 0.4s;
+  }
+
+  .drawer.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .drawer a {
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--color-ivory);
+  }
+
+  .drawer .close {
+    position: absolute;
+    top: 14px;
+    right: var(--gutter);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid rgba(192, 149, 83, 0.4);
+    color: var(--color-champagne);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .drawer.stuck .close {
+    top: 9px;
+  }
+
+  .drawer a.phone {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: var(--tracking-mid);
+    color: var(--color-brass);
+  }
+</style>

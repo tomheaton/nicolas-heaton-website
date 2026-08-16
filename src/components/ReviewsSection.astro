@@ -1,0 +1,88 @@
+---
+import SectionHead from "@/components/ui/SectionHead.astro";
+import { REVIEWS } from "@/constants/content.ts";
+---
+
+<section class="section light" id="reviews">
+  <div class="wrap center">
+    <SectionHead
+      eyebrow="Reviews"
+      title="In their words"
+      ruleClass="mt-6 mb-0"
+    />
+    <div class="quotes">
+      {REVIEWS.map((review, i) => (
+        <blockquote
+          class="quote frame on-light reveal"
+          data-delay={i % 3 === 0 ? undefined : String(i % 3)}
+        >
+          <span class="mk">&ldquo;</span>
+          <p>{review.quote}</p>
+          <footer>
+            <b>{review.name}</b>
+            {review.service}
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2vw, 34px);
+    margin-top: clamp(36px, 5vw, 58px);
+  }
+
+  .quote {
+    padding: clamp(1.9rem, 2.4vw, 2.7rem);
+    background: rgba(255, 255, 255, 0.55);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .quote .mk {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    line-height: 0.6;
+    color: var(--color-brass);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .quote p {
+    font-size: clamp(1rem, 0.35vw + 0.93rem, 1.1rem);
+    line-height: 1.72;
+    color: var(--color-ink);
+    margin-bottom: 1.6rem;
+  }
+
+  .quote footer {
+    margin-top: auto;
+    font-size: 0.7rem;
+    letter-spacing: var(--tracking-mid);
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .quote footer b {
+    display: block;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 940px) {
+    .quotes {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 1500px) {
+    .quote p {
+      font-size: 1.14rem;
+    }
+  }
+</style>

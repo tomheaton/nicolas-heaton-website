@@ -1,0 +1,114 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Rule from "@/components/ui/Rule.astro";
+import { VIRTUES } from "@/constants/content.ts";
+import { SITE } from "@/constants/site.ts";
+---
+
+<section class="section light" id="studio">
+  <div class="wrap studio-grid">
+    <div class="reveal">
+      <p class="eyebrow">The Studio</p>
+      <h2>More than a haircut</h2>
+      <Rule align="left" />
+      <p class="lede">
+        Nicolas Heaton is a small, independent salon built around one idea: good hair should feel
+        effortless once you leave the chair.
+      </p>
+      <p>
+        Every appointment starts with a proper consultation, so the shape we cut suits your hair,
+        your routine and the way you actually wear it. No upselling, no guesswork — just a straight
+        answer about what will suit you.
+      </p>
+      <Button href={`tel:${SITE.phone}`} variant="on-light" class="mt-[0.8rem]">
+        Call to book
+      </Button>
+    </div>
+    <ul class="virtues reveal" data-delay="1">
+      {VIRTUES.map((virtue) => (
+        <li>
+          <span class="mark" />
+          <div>
+            <h3>{virtue.title}</h3>
+            <p>{virtue.body}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .studio-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(36px, 6vw, 90px);
+    align-items: center;
+  }
+
+  .virtues {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .virtues li {
+    display: flex;
+    gap: 1.1rem;
+    padding: 1.35rem 0;
+    border-top: 1px solid rgba(20, 18, 16, 0.12);
+  }
+
+  .virtues li:last-child {
+    border-bottom: 1px solid rgba(20, 18, 16, 0.12);
+  }
+
+  .virtues .mark {
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    margin-top: 0.3rem;
+    position: relative;
+  }
+
+  .virtues .mark::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 13px;
+    height: 13px;
+    margin: -6.5px 0 0 -6.5px;
+    border: 1px solid var(--color-brass);
+    transform: rotate(45deg);
+  }
+
+  .virtues .mark::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1px;
+    height: 24px;
+    margin: -12px 0 0 -0.5px;
+    background: var(--color-brass);
+    opacity: 0.45;
+  }
+
+  .virtues h3 {
+    font-size: 1.12rem;
+    margin-bottom: 0.25rem;
+    color: var(--color-ink);
+  }
+
+  .virtues p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 940px) {
+    .studio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

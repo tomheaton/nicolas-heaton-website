@@ -1,0 +1,167 @@
+---
+import { DAY_NAMES, HOURS, HOURS_DISPLAY } from "@/constants/content.ts";
+
+const clock = (h: number) => {
+  const hr = Math.floor(h);
+  const mn = Math.round((h - hr) * 60);
+  const ap = hr < 12 ? "am" : "pm";
+  const h12 = hr % 12 === 0 ? 12 : hr % 12;
+  return `${h12}${mn ? `:${mn < 10 ? "0" : ""}${mn}` : ""}${ap}`;
+};
+
+const rows = HOURS_DISPLAY.map(({ day, name }) => {
+  const hours = HOURS[day];
+  const label = hours ? `${clock(hours[0])} – ${clock(hours[1])}` : "Closed";
+  return { day, name, label, closed: hours === null };
+});
+---
+
+<div class="panel frame">
+  <h3>Opening hours</h3>
+  <p class="status" id="status"></p>
+  <ul class="hours" id="hours">
+    {rows.map((row) => (
+      <li data-day={row.day} class={row.closed ? "shut" : undefined}>
+        <span class="day">{row.name}</span>
+        <span class="hrs">{row.label}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script is:inline define:vars={{ hours: HOURS, dayNames: DAY_NAMES }}>
+  const schedule = hours;
+
+  const clock = (h) => {
+    const hr = Math.floor(h);
+    const mn = Math.round((h - hr) * 60);
+    const ap = hr < 12 ? "am" : "pm";
+    const h12 = hr % 12 === 0 ? 12 : hr % 12;
+    return `${h12}${mn ? `:${mn < 10 ? "0" : ""}${mn}` : ""}${ap}`;
+  };
+
+  const list = document.getElementById("hours");
+  const statusEl = document.getElementById("status");
+  if (list && statusEl) {
+    const now = new Date();
+    const d = now.getDay();
+    const t = now.getHours() + now.getMinutes() / 60;
+    const rows = new Map();
+    for (const child of Array.from(list.children)) {
+      const li = child;
+      const day = li.getAttribute("data-day");
+      if (day !== null) rows.set(day, li);
+    }
+
+    for (let n = 0; n < 7; n++) {
+      const idx = (d + n) % 7;
+      const li = rows.get(String(idx));
+      if (!li) continue;
+      list.appendChild(li);
+      if (n === 0) {
+        li.classList.add("today");
+        const dayEl = li.querySelector(".day");
+        if (dayEl) dayEl.textContent = `Today · ${dayNames[idx]}`;
+      }
+    }
+
+    const today = schedule[d];
+    if (today && t >= today[0] && t < today[1]) {
+      statusEl.className = "status open";
+      statusEl.textContent = `Open now · until ${clock(today[1])}`;
+    } else {
+      statusEl.style.display = "none";
+    }
+  }
+</script>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: -0.5rem 0 1.15rem;
+    font-size: 0.68rem;
+    letter-spacing: var(--tracking-mid);
+    text-transform: uppercase;
+    color: var(--color-ash);
+  }
+
+  .status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    transform: rotate(45deg);
+    background: rgba(180, 172, 160, 0.45);
+  }
+
+  .status.open {
+    color: var(--color-champagne);
+  }
+
+  .status.open::before {
+    background: var(--color-brass);
+    box-shadow: 0 0 0 4px rgba(192, 149, 83, 0.15);
+  }
+
+  .hours {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.72rem 0;
+    border-bottom: 1px solid rgba(192, 149, 83, 0.16);
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hours li:last-child {
+    border-bottom: 0;
+  }
+
+  .hours span:first-child {
+    color: var(--color-ivory);
+  }
+
+  .hours span:last-child {
+    color: var(--color-ash);
+  }
+
+  .hours .shut .hrs {
+    color: rgba(180, 172, 160, 0.45);
+  }
+
+  .hours li.today {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+
+  .hours li.today::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin-top: -4px;
+    transform: rotate(45deg);
+    border: 1px solid var(--color-brass);
+  }
+
+  .hours li.today .day {
+    color: var(--color-champagne);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .hours li.today .hrs,
+  .hours li.today.shut .hrs {
+    color: var(--color-brass);
+    font-weight: 500;
+  }
+</style>

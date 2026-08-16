@@ -1,0 +1,112 @@
+---
+import { Font } from "astro:assets";
+import { DAY_NAMES, HOURS } from "@/constants/content.ts";
+import { OG_IMAGE, SITE } from "@/constants/site.ts";
+import "@/styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.title, description = SITE.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(OG_IMAGE, Astro.site);
+
+const openingHours = Object.entries(HOURS)
+  .map(([day, hours]) => ({ day: Number(day), hours }))
+  .filter((entry) => entry.hours !== null)
+  .map(({ day, hours }) => {
+    const [open, close] = hours as readonly [number, number];
+    const clock = (h: number) => {
+      const hr = Math.floor(h);
+      const min = Math.round((h - hr) * 60);
+      return `${String(hr).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
+    };
+    return {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: DAY_NAMES[day],
+      opens: clock(open),
+      closes: clock(close),
+    };
+  });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: SITE.name,
+  description: SITE.description,
+  image: ogImage.toString(),
+  url: canonical.toString(),
+  telephone: SITE.phoneTel,
+  email: SITE.email,
+  priceRange: "££",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.addressLine1,
+    addressLocality: SITE.addressLocality,
+    addressRegion: SITE.addressRegion,
+    postalCode: SITE.postcode,
+    addressCountry: "GB",
+  },
+  openingHoursSpecification: openingHours,
+};
+---
+
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#141210" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/monogram.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={SITE.ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Nicolas Heaton Hairdresser" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={SITE.ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Nicolas Heaton Hairdresser" />
+
+    <Font cssVariable="--font-outfit" preload />
+    <Font cssVariable="--font-syne" preload />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="font-sans bg-onyx text-ivory">
+    <slot />
+    <script>
+      import { inject } from "@vercel/analytics";
+      inject();
+    </script>
+    <script>
+      document.documentElement.classList.add("js");
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

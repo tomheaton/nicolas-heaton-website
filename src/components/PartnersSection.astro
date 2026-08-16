@@ -1,0 +1,72 @@
+---
+import Rule from "@/components/ui/Rule.astro";
+import { PARTNERS } from "@/constants/content.ts";
+---
+
+<section class="partners" id="partners">
+  <div class="wrap">
+    <p class="eyebrow">Partners</p>
+    <h2>The brands on our shelves</h2>
+    <Rule tight class="mt-[1.2rem] mb-0" />
+    <div class="partner-row">
+      {PARTNERS.map((partner) => (
+        <a
+          href={partner.url}
+          target="_blank"
+          rel="external noopener noreferrer"
+          aria-label={`${partner.name} website`}
+        >
+          <img src={partner.image} alt={`${partner.name} logo`} />
+        </a>
+      ))}
+    </div>
+    <p class="partner-note">
+      Colour, care, and styling products we use in the chair and sell to take home.
+    </p>
+  </div>
+</section>
+
+<style>
+  .partners {
+    background: var(--color-ivory-shade);
+    color: var(--color-ink);
+    padding-block: clamp(38px, 6vw, 64px);
+    text-align: center;
+  }
+
+  .partners .eyebrow {
+    color: #8a6f3e;
+  }
+
+  .partners h2 {
+    color: var(--color-ink);
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  }
+
+  .partner-note {
+    font-size: 0.86rem;
+    color: var(--color-ink-muted);
+    margin: 1.8rem auto 0;
+  }
+
+  .partner-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(28px, 7vw, 90px);
+    margin-top: clamp(28px, 4vw, 46px);
+  }
+
+  .partner-row a {
+    display: flex;
+    align-items: center;
+  }
+
+  .partner-row img {
+    height: 68px;
+    width: auto;
+    max-width: 320px;
+    object-fit: contain;
+  }
+</style>

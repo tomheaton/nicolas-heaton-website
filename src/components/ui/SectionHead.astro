@@ -1,0 +1,30 @@
+---
+import Rule from "@/components/ui/Rule.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  align?: "center" | "left";
+  tight?: boolean;
+  titleClass?: string;
+  ruleClass?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  align = "center",
+  tight = false,
+  titleClass,
+  ruleClass,
+} = Astro.props;
+---
+
+<div class="reveal">
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2 class={titleClass}>{title}</h2>
+  <Rule tight={tight} align={align} class={ruleClass} />
+  {lede && <p class="lede">{lede}</p>}
+</div>

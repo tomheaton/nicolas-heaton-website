@@ -1,0 +1,174 @@
+---
+import { Mail, Phone } from "@lucide/astro";
+import Logo from "@/assets/logo.svg";
+import { NAV } from "@/constants/nav.ts";
+import { SITE } from "@/constants/site.ts";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <Logo class="logo" role="img" aria-label="Nicolas Heaton Hairdresser" />
+      <p>Precision cutting, colour, and styling in Malmesbury. By appointment.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        {NAV.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+        <li>
+          <a href={`tel:${SITE.phone}`}>Call to book</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="social">
+        <a href={`tel:${SITE.phone}`} aria-label={`Call ${SITE.phoneDisplay}`}>
+          <Phone stroke-width={1.5} />
+        </a>
+        <a href={`mailto:${SITE.email}`} aria-label={`Email ${SITE.email}`}>
+          <Mail stroke-width={1.5} />
+        </a>
+      </div>
+      <p>
+        {SITE.addressLine1}
+        <br />
+        {SITE.addressLine2}
+      </p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="colophon">
+      <span>© {year} Nicolas Heaton Hairdresser. All rights reserved.</span>
+      <span>
+        Developed by{" "}
+        <b>
+          <a
+            href="https://tomheaton.dev"
+            target="_blank"
+            rel="external noopener noreferrer"
+            class="text-ash transition-colors hover:text-champagne"
+          >
+            Tom Heaton
+          </a>
+        </b>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    background: var(--color-onyx-deep);
+    padding: clamp(56px, 7vw, 88px) 0 0;
+    border-top: 1px solid rgba(192, 149, 83, 0.22);
+  }
+
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: clamp(30px, 5vw, 60px);
+  }
+
+  .foot .logo {
+    width: 190px;
+    aspect-ratio: 1.1839;
+    height: auto;
+    color: var(--color-ivory);
+    opacity: 0.92;
+  }
+
+  .foot p {
+    color: var(--color-ash);
+    font-size: 0.92rem;
+    max-width: 34ch;
+    margin-top: 1.4rem;
+  }
+
+  .foot h4 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.66rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin: 0 0 1.2rem;
+  }
+
+  .foot ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .foot ul a {
+    text-decoration: none;
+    color: var(--color-ash);
+    font-size: 0.92rem;
+    transition: color 0.3s ease;
+  }
+
+  .foot ul a:hover {
+    color: var(--color-champagne);
+  }
+
+  .social {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .social a {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(192, 149, 83, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-champagne);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .social a:hover {
+    background: var(--color-brass);
+    color: var(--color-onyx);
+  }
+
+  .social svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .colophon {
+    margin-top: clamp(40px, 6vw, 68px);
+    border-top: 1px solid rgba(192, 149, 83, 0.16);
+    padding: 1.4rem 0 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.4rem;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+    color: rgba(180, 172, 160, 0.7);
+  }
+
+  .colophon b {
+    font-weight: 500;
+    color: var(--color-ash);
+  }
+
+  @media (max-width: 940px) {
+    .foot-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

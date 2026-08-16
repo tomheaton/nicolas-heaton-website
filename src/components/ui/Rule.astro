@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  tight?: boolean;
+  align?: "left" | "center";
+}
+
+const { tight = false, align = "center", class: className, ...rest } = Astro.props;
+const classes = ["rule", tight ? "tight" : "", align === "left" ? "left" : ""]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={[classes, className].filter(Boolean).join(" ")} {...rest}>
+  <i /><b /><i />
+</div>

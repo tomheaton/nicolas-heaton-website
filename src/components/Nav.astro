@@ -1,0 +1,203 @@
+---
+import Monogram from "@/assets/monogram.svg";
+import { NAV } from "@/constants/nav.ts";
+import { SITE } from "@/constants/site.ts";
+---
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label={SITE.name}>
+    <Monogram class="mark" aria-hidden="true" />
+    <span>{SITE.name}</span>
+  </a>
+  <nav>
+    <ul class="nav-links">
+      {NAV.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <a class="btn" href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
+  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+    <i />
+  </button>
+</header>
+
+<script>
+  const nav = document.getElementById("nav");
+  const drawer = document.getElementById("drawer");
+  const onScroll = () => {
+    const stuck = window.scrollY > 40;
+    nav?.classList.toggle("stuck", stuck);
+    drawer?.classList.toggle("stuck", stuck);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 14px var(--gutter);
+    transition:
+      background-color 0.4s ease,
+      box-shadow 0.4s ease,
+      padding 0.4s ease;
+  }
+
+  .nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(192, 149, 83, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .nav.stuck {
+    background: rgba(14, 12, 11, 0.94);
+    backdrop-filter: blur(10px);
+    padding-block: 9px;
+  }
+
+  .nav.stuck::after {
+    opacity: 1;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    margin-right: auto;
+  }
+
+  .brand .mark {
+    height: 38px;
+    width: 27.5px;
+    color: var(--color-ivory);
+    display: block;
+  }
+
+  .brand span {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-ivory);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: var(--tracking-mid);
+    text-transform: uppercase;
+    color: var(--color-ash);
+    position: relative;
+    padding-block: 0.4em;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--color-brass);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-champagne);
+  }
+
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nav .btn {
+    padding: 0.85em 1.5em;
+    font-size: 0.68rem;
+  }
+
+  .burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(192, 149, 83, 0.4);
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .burger i {
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: var(--color-champagne);
+    position: relative;
+  }
+
+  .burger i::before,
+  .burger i::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 1px;
+    background: var(--color-champagne);
+  }
+
+  .burger i::before {
+    top: -6px;
+  }
+
+  .burger i::after {
+    top: 6px;
+  }
+
+  @media (max-width: 940px) {
+    .nav-links,
+    .nav .btn {
+      display: none;
+    }
+
+    .burger {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand span {
+      font-size: 0.9rem;
+    }
+  }
+</style>

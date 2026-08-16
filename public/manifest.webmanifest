@@ -1,0 +1,15 @@
+{
+  "name": "Nicolas Heaton — Hairdresser, Malmesbury",
+  "short_name": "Nicolas Heaton",
+  "icons": [
+    {
+      "src": "monogram.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://nicolasheaton.uk",
+  "display": "standalone",
+  "background_color": "#141210",
+  "theme_color": "#141210"
+}

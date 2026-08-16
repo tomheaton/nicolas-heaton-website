@@ -1,0 +1,82 @@
+---
+const N = 21;
+const SPREAD = 76;
+const OX = 500;
+const OY = 690;
+const LEN = 700;
+
+const order = Array.from({ length: N }, (_, i) => i).sort(
+  (a, b) => Math.abs(a - (N - 1) / 2) - Math.abs(b - (N - 1) / 2),
+);
+
+const rays = order.map((i2, k) => {
+  const angle = -SPREAD + 2 * SPREAD * (i2 / (N - 1));
+  const width = i2 % 2 === 0 ? 13 : 5;
+  return { angle, width, delay: 0.12 + k * 0.035 };
+});
+---
+
+<svg class="fan" viewBox="0 0 1000 700" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="rayGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#c09553" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#c09553" stop-opacity="0.085" />
+      <stop offset="100%" stop-color="#c09553" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <g>
+    {rays.map((ray) => (
+      <polygon
+        points={`${OX},${OY} ${OX - ray.width},${OY - LEN} ${OX + ray.width},${OY - LEN}`}
+        fill="url(#rayGrad)"
+        class="ray"
+        style={`--a: ${ray.angle}deg; transform: rotate(${ray.angle}deg); animation-delay: ${ray.delay}s`}
+      />
+    ))}
+  </g>
+</svg>
+
+<script>
+  const hero = document.querySelector(".hero");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    requestAnimationFrame(() => hero?.classList.add("lit"));
+  }
+</script>
+
+<style>
+  .fan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: radial-gradient(
+      ellipse 68% 92% at 50% 100%,
+      #000 6%,
+      rgba(0, 0, 0, 0.55) 46%,
+      rgba(0, 0, 0, 0) 84%
+    );
+    mask-image: radial-gradient(
+      ellipse 68% 92% at 50% 100%,
+      #000 6%,
+      rgba(0, 0, 0, 0.55) 46%,
+      rgba(0, 0, 0, 0) 84%
+    );
+  }
+
+  @media (max-width: 760px) {
+    .fan {
+      height: 56%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ray {
+      opacity: 1;
+    }
+  }
+</style>
