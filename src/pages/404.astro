@@ -1,0 +1,97 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import NavDrawer from "@/components/NavDrawer.astro";
+import Button from "@/components/ui/Button.astro";
+import Rule from "@/components/ui/Rule.astro";
+import { SITE } from "@/constants/site.ts";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={`Page not found — ${SITE.name}`}>
+  <Nav />
+  <NavDrawer />
+  <main>
+    <section class="notfound reveal">
+      <div class="notfound-inner">
+        <p class="eyebrow">Malmesbury · Wiltshire</p>
+        <h1 class="code">404</h1>
+        <Rule />
+        <p class="notfound-tag">This chair's empty by mistake.</p>
+        <p class="notfound-sub">
+          The page you're looking for has been trimmed away. Let's get you back to somewhere
+          familiar.
+        </p>
+        <div class="notfound-cta">
+          <a class="btn solid" href="/">Back to home</a>
+          <Button href={`tel:${SITE.phone}`}>Call {SITE.phoneDisplay}</Button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .notfound {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px var(--gutter) 60px;
+    overflow: hidden;
+    background: radial-gradient(
+      120% 80% at 50% 20%,
+      #1f1b18 0%,
+      var(--color-onyx) 55%,
+      var(--color-onyx-deep) 100%
+    );
+  }
+
+  .notfound-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .code {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    font-size: clamp(5rem, 16vw, 9rem);
+    line-height: 1;
+    color: var(--color-ivory);
+    margin: 0 0 1.6rem;
+  }
+
+  .notfound-tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    font-size: clamp(1.4rem, 3.3vw, 2.25rem);
+    line-height: 1.24;
+    max-width: 20ch;
+    margin: 1.8rem auto 0;
+    color: var(--color-ivory);
+  }
+
+  .notfound-sub {
+    color: rgba(245, 240, 230, 0.8);
+    max-width: 44ch;
+    margin: 1.4rem auto 2.3rem;
+    font-size: 1.02rem;
+  }
+
+  .notfound-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+</style>
