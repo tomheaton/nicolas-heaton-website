@@ -13,7 +13,7 @@ import { REVIEWS } from "@/constants/content.ts";
     <div class="quotes">
       {REVIEWS.map((review, i) => (
         <blockquote
-          class="quote frame on-light reveal"
+          class="quote frame on-light panel reveal"
           data-delay={i % 3 === 0 ? undefined : String(i % 3)}
         >
           <span class="mk">&ldquo;</span>
@@ -37,7 +37,6 @@ import { REVIEWS } from "@/constants/content.ts";
   }
 
   .quote {
-    padding: clamp(1.9rem, 2.4vw, 2.7rem);
     background: rgba(255, 255, 255, 0.55);
     display: flex;
     flex-direction: column;

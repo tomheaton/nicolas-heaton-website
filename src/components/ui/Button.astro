@@ -4,18 +4,34 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"a"> {
   href: string;
   variant?: "outline" | "solid" | "on-light";
+  size?: "md" | "sm";
+  /** Full-width bar with no side borders, for the foot of a panel. */
+  bar?: boolean;
 }
 
-const { href, variant = "outline", class: className, ...rest } = Astro.props;
-const classes = [
-  "btn",
-  variant === "solid" ? "solid" : "",
-  variant === "on-light" ? "on-light" : "",
-]
-  .filter(Boolean)
-  .join(" ");
+const {
+  href,
+  variant = "outline",
+  size = "md",
+  bar = false,
+  class: className,
+  ...rest
+} = Astro.props;
 ---
 
-<a href={href} class={[classes, className].filter(Boolean).join(" ")} {...rest}>
+<a
+  href={href}
+  class:list={[
+    "btn",
+    {
+      solid: variant === "solid",
+      "on-light": variant === "on-light",
+      sm: size === "sm",
+      bar,
+    },
+    className,
+  ]}
+  {...rest}
+>
   <slot />
 </a>

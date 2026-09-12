@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Adds the vignette that keeps copy readable where the hero fan runs behind it. */
+  scrim?: boolean;
+}
+
+const { scrim = false, class: className, ...rest } = Astro.props;
+---
+
+{/* A full-height centred panel. Used by the hero and the 404 page. */}
+<section class:list={["stage", { "stage-scrim": scrim }, className]} {...rest}>
+  <slot name="backdrop" />
+  <div class="stage-inner">
+    <slot />
+  </div>
+</section>

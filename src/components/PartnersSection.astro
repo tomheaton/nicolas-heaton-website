@@ -3,7 +3,7 @@ import Rule from "@/components/ui/Rule.astro";
 import { PARTNERS } from "@/constants/content.ts";
 ---
 
-<section class="partners" id="partners">
+<section class="partners light" id="partners">
   <div class="wrap">
     <p class="eyebrow">Partners</p>
     <h2>Brands in the salon</h2>
@@ -30,23 +30,16 @@ import { PARTNERS } from "@/constants/content.ts";
 <style>
   .partners {
     background: var(--color-ivory-shade);
-    color: var(--color-ink);
     padding-block: clamp(38px, 6vw, 64px);
     text-align: center;
   }
 
-  .partners .eyebrow {
-    color: #8a6f3e;
-  }
-
   .partners h2 {
-    color: var(--color-ink);
     font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   }
 
   .partner-note {
     font-size: 0.86rem;
-    color: var(--color-ink-muted);
     margin: 1.8rem auto 0;
   }
 

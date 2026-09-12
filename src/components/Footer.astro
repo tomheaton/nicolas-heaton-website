@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
       <p>Cuts, colour and styling in Malmesbury. Appointments by phone.</p>
     </div>
     <div>
-      <h4>Explore</h4>
+      <h4 class="eyebrow">Explore</h4>
       <ul>
         {NAV.map((item) => (
           <li>
@@ -27,12 +27,12 @@ const year = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h4 class="eyebrow">Contact</h4>
       <div class="social">
-        <a href={`tel:${SITE.phone}`} aria-label={`Call ${SITE.phoneDisplay}`}>
+        <a class="icon-button" href={`tel:${SITE.phone}`} aria-label={`Call ${SITE.phoneDisplay}`}>
           <Phone stroke-width={1.5} />
         </a>
-        <a href={`mailto:${SITE.email}`} aria-label={`Email ${SITE.email}`}>
+        <a class="icon-button" href={`mailto:${SITE.email}`} aria-label={`Email ${SITE.email}`}>
           <Mail stroke-width={1.5} />
         </a>
       </div>
@@ -67,7 +67,7 @@ const year = new Date().getFullYear();
   .foot {
     background: var(--color-onyx-deep);
     padding: clamp(56px, 7vw, 88px) 0 0;
-    border-top: 1px solid rgba(192, 149, 83, 0.22);
+    border-top: 1px solid var(--line-brass);
   }
 
   .foot-grid {
@@ -89,16 +89,6 @@ const year = new Date().getFullYear();
     font-size: 0.92rem;
     max-width: 34ch;
     margin-top: 1.4rem;
-  }
-
-  .foot h4 {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 0.66rem;
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--color-brass);
-    margin: 0 0 1.2rem;
   }
 
   .foot ul {
@@ -125,24 +115,6 @@ const year = new Date().getFullYear();
     gap: 0.8rem;
   }
 
-  .social a {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(192, 149, 83, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-champagne);
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-  }
-
-  .social a:hover {
-    background: var(--color-brass);
-    color: var(--color-onyx);
-  }
-
   .social svg {
     width: 17px;
     height: 17px;
@@ -150,7 +122,7 @@ const year = new Date().getFullYear();
 
   .colophon {
     margin-top: clamp(40px, 6vw, 68px);
-    border-top: 1px solid rgba(192, 149, 83, 0.16);
+    border-top: 1px solid var(--line-brass-soft);
     padding: 1.4rem 0 1.6rem;
     display: flex;
     flex-wrap: wrap;
@@ -158,7 +130,7 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     font-size: 0.76rem;
     letter-spacing: 0.05em;
-    color: rgba(180, 172, 160, 0.7);
+    color: var(--text-ash-soft);
   }
 
   .colophon b {

@@ -66,7 +66,7 @@ const rows = OPENING_HOURS.map((day) => ({
     width: 7px;
     height: 7px;
     transform: rotate(45deg);
-    background: rgba(180, 172, 160, 0.45);
+    background: var(--text-ash-faint);
   }
 
   .status.open {
@@ -75,7 +75,7 @@ const rows = OPENING_HOURS.map((day) => ({
 
   .status.open::before {
     background: var(--color-brass);
-    box-shadow: 0 0 0 4px rgba(192, 149, 83, 0.15);
+    box-shadow: 0 0 0 4px var(--line-brass-soft);
   }
 
   .hours {
@@ -89,7 +89,7 @@ const rows = OPENING_HOURS.map((day) => ({
     justify-content: space-between;
     gap: 1rem;
     padding: 0.72rem 0;
-    border-bottom: 1px solid rgba(192, 149, 83, 0.16);
+    border-bottom: 1px solid var(--line-brass-soft);
     font-size: 0.92rem;
     letter-spacing: 0.03em;
   }
@@ -107,7 +107,7 @@ const rows = OPENING_HOURS.map((day) => ({
   }
 
   .hours .shut .hrs {
-    color: rgba(180, 172, 160, 0.45);
+    color: var(--text-ash-faint);
   }
 
   .hours li.today {

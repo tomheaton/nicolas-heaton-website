@@ -1,5 +1,7 @@
 ---
 import Monogram from "@/assets/monogram.svg";
+import Button from "@/components/ui/Button.astro";
+import Rule from "@/components/ui/Rule.astro";
 import { NAV } from "@/constants/nav.ts";
 import { SITE } from "@/constants/site.ts";
 ---
@@ -11,22 +13,43 @@ import { SITE } from "@/constants/site.ts";
   </a>
   <nav>
     <ul class="nav-links">
-      {NAV.map((item) => (
-        <li>
-          <a href={item.href}>{item.label}</a>
-        </li>
-      ))}
+      {
+        NAV.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))
+      }
     </ul>
   </nav>
-  <a class="btn" href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
-  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
-    <i />
+  <div class="nav-call">
+    <Button href={`tel:${SITE.phone}`} size="sm">{SITE.phoneDisplay}</Button>
+  </div>
+  <button
+    class="burger icon-button"
+    id="burger"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false"
+  >
+    <i></i>
   </button>
 </header>
+
+<div class="drawer" id="drawer">
+  <button class="close icon-button" id="close" type="button" aria-label="Close menu">&times;</button
+  >
+  {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+  <Rule tight class="mt-[0.6rem]" />
+  <a class="phone" href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
+</div>
 
 <script>
   const nav = document.getElementById("nav");
   const drawer = document.getElementById("drawer");
+  const burger = document.getElementById("burger");
+  const close = document.getElementById("close");
+
   const onScroll = () => {
     const stuck = window.scrollY > 40;
     nav?.classList.toggle("stuck", stuck);
@@ -34,6 +57,21 @@ import { SITE } from "@/constants/site.ts";
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+
+  const setMenu = (open: boolean) => {
+    drawer?.classList.toggle("open", open);
+    burger?.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  burger?.addEventListener("click", () => setMenu(true));
+  close?.addEventListener("click", () => setMenu(false));
+  for (const link of drawer?.querySelectorAll("a") ?? []) {
+    link.addEventListener("click", () => setMenu(false));
+  }
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenu(false);
+  });
 </script>
 
 <style>
@@ -58,7 +96,7 @@ import { SITE } from "@/constants/site.ts";
     right: 0;
     bottom: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(192, 149, 83, 0.5), transparent);
+    background: linear-gradient(90deg, transparent, var(--line-brass-strong), transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
   }
@@ -141,28 +179,19 @@ import { SITE } from "@/constants/site.ts";
     transform-origin: left;
   }
 
-  .nav .btn {
-    padding: 0.85em 1.5em;
-    font-size: 0.68rem;
+  .nav-call {
+    display: flex;
   }
 
   .burger {
     display: none;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(192, 149, 83, 0.4);
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
   }
 
   .burger i {
     display: block;
     width: 18px;
     height: 1px;
-    background: var(--color-champagne);
+    background: currentcolor;
     position: relative;
   }
 
@@ -173,7 +202,7 @@ import { SITE } from "@/constants/site.ts";
     left: 0;
     width: 18px;
     height: 1px;
-    background: var(--color-champagne);
+    background: currentcolor;
   }
 
   .burger i::before {
@@ -184,9 +213,61 @@ import { SITE } from "@/constants/site.ts";
     top: 6px;
   }
 
+  /* ---------- drawer ---------- */
+  .drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: var(--color-onyx-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.4s ease,
+      visibility 0.4s;
+  }
+
+  .drawer.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .drawer a {
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--color-ivory);
+  }
+
+  .drawer .close {
+    position: absolute;
+    top: 14px;
+    right: var(--gutter);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .drawer.stuck .close {
+    top: 9px;
+  }
+
+  .drawer a.phone {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: var(--tracking-mid);
+    color: var(--color-brass);
+  }
+
   @media (max-width: 940px) {
     .nav-links,
-    .nav .btn {
+    .nav-call {
       display: none;
     }
 

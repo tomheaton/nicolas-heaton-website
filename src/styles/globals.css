@@ -9,6 +9,7 @@
   --color-ivory: #f5f0e6;
   --color-ivory-shade: #ece4d4;
   --color-brass: #c09553;
+  --color-brass-deep: #8a6f3e;
   --color-champagne: #e5d3a6;
   --color-ash: #b4aca0;
   --color-ink: #141210;
@@ -34,6 +35,23 @@
   --gutter: clamp(20px, 5vw, 80px);
   --section-y: clamp(72px, 11vw, 148px);
   --measure: 62ch;
+
+  /* Keylines. Every hairline, border and divider comes from here so the
+     values stop drifting apart across components. */
+  --line-brass: color-mix(in srgb, var(--color-brass) 25%, transparent);
+  --line-brass-soft: color-mix(in srgb, var(--color-brass) 18%, transparent);
+  --line-brass-strong: color-mix(in srgb, var(--color-brass) 40%, transparent);
+  --line-champagne: color-mix(in srgb, var(--color-champagne) 20%, transparent);
+  --line-champagne-strong: color-mix(in srgb, var(--color-champagne) 35%, transparent);
+  --line-ink: color-mix(in srgb, var(--color-ink) 13%, transparent);
+  --line-ink-strong: color-mix(in srgb, var(--color-ink) 45%, transparent);
+
+  /* Secondary text on dark grounds, in descending prominence. */
+  --text-soft: color-mix(in srgb, var(--color-ivory) 80%, transparent);
+  --text-softer: color-mix(in srgb, var(--color-ivory) 68%, transparent);
+  --text-faint: color-mix(in srgb, var(--color-ivory) 60%, transparent);
+  --text-ash-soft: color-mix(in srgb, var(--color-ash) 70%, transparent);
+  --text-ash-faint: color-mix(in srgb, var(--color-ash) 45%, transparent);
 }
 
 /* ---------- base ---------- */
@@ -128,9 +146,103 @@
     color: var(--color-ink-muted);
   }
 
+  /* Must out-specify `& p` above — an eyebrow is a paragraph. */
+  & .eyebrow {
+    color: var(--color-brass-deep);
+  }
+
   & h2 {
     color: var(--color-ink);
   }
+}
+
+/* ---------- layout: full-height stage ----------
+   Shared by the homepage hero and the 404 page. The tag, sub and CTA row are
+   slotted in by those pages, so they keep the caller's style scope and these
+   rules have to be global. */
+@utility stage {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px var(--gutter) 60px;
+  overflow: hidden;
+  background: radial-gradient(
+    120% 80% at 50% 20%,
+    var(--color-onyx-raised) 0%,
+    var(--color-onyx) 55%,
+    var(--color-onyx-deep) 100%
+  );
+}
+
+/* Keeps the lockup and copy readable where the hero fan runs behind them. */
+@utility stage-scrim {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 48% 44% at 50% 44%,
+        rgba(14, 12, 11, 0.9) 0%,
+        rgba(14, 12, 11, 0.6) 52%,
+        rgba(14, 12, 11, 0) 78%
+      ),
+      linear-gradient(180deg, rgba(14, 12, 11, 0.8) 0%, rgba(14, 12, 11, 0) 20%),
+      linear-gradient(0deg, rgba(14, 12, 11, 0.72) 0%, rgba(14, 12, 11, 0) 16%);
+  }
+
+  @media (max-width: 760px) {
+    &::after {
+      background:
+        radial-gradient(
+          ellipse 78% 42% at 50% 42%,
+          rgba(14, 12, 11, 0.92) 0%,
+          rgba(14, 12, 11, 0.62) 55%,
+          rgba(14, 12, 11, 0) 82%
+        ),
+        linear-gradient(180deg, rgba(14, 12, 11, 0.85) 0%, rgba(14, 12, 11, 0) 22%);
+    }
+  }
+}
+
+@utility stage-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+@utility stage-tag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  font-size: clamp(1.4rem, 3.3vw, 2.25rem);
+  line-height: 1.24;
+  max-width: 20ch;
+  margin: 0 auto;
+  color: var(--color-ivory);
+}
+
+@utility stage-sub {
+  color: var(--text-soft);
+  max-width: 44ch;
+  margin: 1.4rem auto 2.3rem;
+  font-size: 1.02rem;
+}
+
+@utility stage-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
 }
 
 /* ---------- motif: hairline + diamond rule ---------- */
@@ -183,7 +295,7 @@
 /* ---------- motif: stepped bracket frame ---------- */
 @utility frame {
   position: relative;
-  border: 1px solid rgba(192, 149, 83, 0.2);
+  border: 1px solid var(--line-brass-soft);
 
   &::before,
   &::after {
@@ -210,7 +322,7 @@
   }
 
   &.on-light {
-    border-color: rgba(20, 18, 16, 0.14);
+    border-color: var(--line-ink);
   }
 }
 
@@ -268,11 +380,47 @@
 
   &.on-light {
     color: var(--color-ink);
-    border-color: rgba(20, 18, 16, 0.45);
+    border-color: var(--line-ink-strong);
 
     &:hover {
       color: var(--color-onyx);
     }
+  }
+
+  /* Compact, for the header. */
+  &.sm {
+    padding: 0.85em 1.5em;
+    font-size: 0.68rem;
+  }
+
+  /* Full-width bar, for the foot of a panel. */
+  &.bar {
+    border: 0;
+    border-top: 1px solid var(--line-brass);
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ---------- motif: square icon control ---------- */
+@utility icon-button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-brass-strong);
+  background: none;
+  color: var(--color-champagne);
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  &:hover {
+    background: var(--color-brass);
+    color: var(--color-onyx);
   }
 }
 
@@ -315,7 +463,7 @@
 }
 
 /* ---------- motion: hero fan rays ----------
-   `.lit` is toggled onto the hero via JS in HeroFan, so this stays
+   `.lit` is toggled onto the hero section via JS in HeroFan, so this stays
    global (the class crosses the Hero/HeroFan component boundary). */
 .ray {
   transform-box: fill-box;

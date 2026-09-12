@@ -13,7 +13,7 @@ export function isTrading(day: OpeningDay): day is TradingDay {
 }
 
 /** `"10:00"` → `"10am"`, `"09:30"` → `"9:30am"`. */
-export function formatTime(time: string): string {
+function formatTime(time: string): string {
   const [hours, minutes] = time.split(":").map(Number);
   const suffix = hours < 12 ? "am" : "pm";
   const hour = hours % 12 === 0 ? 12 : hours % 12;

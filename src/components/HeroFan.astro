@@ -37,7 +37,7 @@ const rays = order.map((i2, k) => {
 </svg>
 
 <script>
-  const hero = document.querySelector(".hero");
+  const hero = document.querySelector(".fan")?.closest("section");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce) {
     requestAnimationFrame(() => hero?.classList.add("lit"));

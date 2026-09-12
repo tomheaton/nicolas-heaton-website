@@ -1,5 +1,6 @@
 ---
 import OpeningHours from "@/components/OpeningHours.astro";
+import Button from "@/components/ui/Button.astro";
 import SectionHead from "@/components/ui/SectionHead.astro";
 import { SITE } from "@/constants/site.ts";
 ---
@@ -44,14 +45,9 @@ import { SITE } from "@/constants/site.ts";
         src={SITE.mapsEmbedUrl}
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <a
-        class="btn"
-        href={SITE.mapsDirectionsUrl}
-        target="_blank"
-        rel="noopener"
-      >
+      <Button href={SITE.mapsDirectionsUrl} bar target="_blank" rel="noopener">
         Get directions
-      </a>
+      </Button>
     </div>
   </div>
 </section>
@@ -82,13 +78,6 @@ import { SITE } from "@/constants/site.ts";
     filter: saturate(0.7) contrast(1.02) brightness(0.95);
   }
 
-  .map .btn {
-    border: 0;
-    border-top: 1px solid rgba(192, 149, 83, 0.28);
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
-  }
-
   .addr {
     margin-top: 0;
     font-size: 0.95rem;
@@ -99,7 +88,7 @@ import { SITE } from "@/constants/site.ts";
   .addr a {
     color: var(--color-champagne);
     text-decoration: none;
-    border-bottom: 1px solid rgba(229, 211, 166, 0.35);
+    border-bottom: 1px solid var(--line-champagne-strong);
   }
 
   .addr a:hover {
@@ -113,7 +102,7 @@ import { SITE } from "@/constants/site.ts";
     margin-top: 1rem;
     padding: 0.6rem 0.9rem;
     background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(192, 149, 83, 0.25);
+    border: 1px solid var(--line-brass);
     font-size: 0.82rem;
     letter-spacing: 0.04em;
     color: var(--color-champagne);

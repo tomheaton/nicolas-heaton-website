@@ -49,7 +49,7 @@ import { SERVICES } from "@/constants/content.ts";
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(229, 211, 166, 0.35),
+      var(--line-champagne-strong),
       transparent
     );
   }
@@ -72,7 +72,7 @@ import { SERVICES } from "@/constants/content.ts";
 
   .item {
     padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(229, 211, 166, 0.18);
+    border-bottom: 1px solid var(--line-champagne);
   }
 
   .item-head {
@@ -98,7 +98,7 @@ import { SERVICES } from "@/constants/content.ts";
   .item p {
     margin: 0.5rem 0 0;
     font-size: 0.94rem;
-    color: rgba(245, 240, 230, 0.68);
+    color: var(--text-softer);
     max-width: 40ch;
   }
 
@@ -106,7 +106,7 @@ import { SERVICES } from "@/constants/content.ts";
     margin-top: 2.4rem;
     font-size: 0.85rem;
     letter-spacing: 0.04em;
-    color: rgba(245, 240, 230, 0.6);
+    color: var(--text-faint);
     text-align: center;
   }
 
@@ -115,7 +115,7 @@ import { SERVICES } from "@/constants/content.ts";
     height: 1px;
     background-image: radial-gradient(
       circle,
-      rgba(229, 211, 166, 0.55) 1px,
+      color-mix(in srgb, var(--color-champagne) 55%, transparent) 1px,
       transparent 1.2px
     );
     background-size: 6px 1px;
