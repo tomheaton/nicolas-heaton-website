@@ -1,7 +1,8 @@
 ---
 import { Font } from "astro:assets";
-import { DAY_NAMES, HOURS } from "@/constants/content.ts";
+import { OPENING_HOURS } from "@/constants/content.ts";
 import { OG_IMAGE, SITE } from "@/constants/site.ts";
+import { isTrading } from "@/lib/hours.ts";
 import "@/styles/globals.css";
 
 interface Props {
@@ -13,23 +14,12 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(OG_IMAGE, Astro.site);
 
-const openingHours = Object.entries(HOURS)
-  .map(([day, hours]) => ({ day: Number(day), hours }))
-  .filter((entry) => entry.hours !== null)
-  .map(({ day, hours }) => {
-    const [open, close] = hours as readonly [number, number];
-    const clock = (h: number) => {
-      const hr = Math.floor(h);
-      const min = Math.round((h - hr) * 60);
-      return `${String(hr).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
-    };
-    return {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: DAY_NAMES[day],
-      opens: clock(open),
-      closes: clock(close),
-    };
-  });
+const openingHours = OPENING_HOURS.filter(isTrading).map((day) => ({
+  "@type": "OpeningHoursSpecification",
+  dayOfWeek: day.name,
+  opens: day.opens,
+  closes: day.closes,
+}));
 
 const jsonLd = {
   "@context": "https://schema.org",

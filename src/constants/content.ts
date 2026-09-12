@@ -126,34 +126,28 @@ export const PARTNERS: readonly Partner[] = [
   },
 ];
 
-/** Opening hours keyed by JS `Date.prototype.getDay()` — 0 is Sunday. `null` = closed. */
-export const HOURS: Readonly<Record<number, readonly [number, number] | null>> = {
-  0: null,
-  1: null,
-  2: [10, 17],
-  3: [10, 17],
-  4: [10, 19],
-  5: [10, 18],
-  6: [9.5, 16],
-};
+/**
+ * A day in the salon's week. `opens` and `closes` are 24-hour `"HH:MM"`; both are
+ * absent on days the salon is closed.
+ */
+export interface OpeningDay {
+  /** JS `Date.prototype.getDay()` index — 0 is Sunday. */
+  index: number;
+  name: string;
+  opens?: string;
+  closes?: string;
+}
 
-export const DAY_NAMES: readonly string[] = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-/** Display order, Monday first, matching the reference schedule. */
-export const HOURS_DISPLAY: readonly { day: number; name: string }[] = [
-  { day: 1, name: DAY_NAMES[1] },
-  { day: 2, name: DAY_NAMES[2] },
-  { day: 3, name: DAY_NAMES[3] },
-  { day: 4, name: DAY_NAMES[4] },
-  { day: 5, name: DAY_NAMES[5] },
-  { day: 6, name: DAY_NAMES[6] },
-  { day: 0, name: DAY_NAMES[0] },
+/**
+ * Opening hours in display order, Monday first. Single source of truth — the Visit
+ * section, the structured data in the page head, and `/llms.txt` all read from here.
+ */
+export const OPENING_HOURS: readonly OpeningDay[] = [
+  { index: 1, name: "Monday" },
+  { index: 2, name: "Tuesday", opens: "10:00", closes: "17:00" },
+  { index: 3, name: "Wednesday", opens: "10:00", closes: "17:00" },
+  { index: 4, name: "Thursday", opens: "10:00", closes: "19:00" },
+  { index: 5, name: "Friday", opens: "10:00", closes: "18:00" },
+  { index: 6, name: "Saturday", opens: "09:30", closes: "16:00" },
+  { index: 0, name: "Sunday" },
 ];
