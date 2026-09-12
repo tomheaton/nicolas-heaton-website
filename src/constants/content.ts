@@ -6,15 +6,15 @@ export interface Virtue {
 export const VIRTUES: readonly Virtue[] = [
   {
     title: "Precision cutting",
-    body: "Trained on classic technique, cut to a shape that holds as it grows.",
+    body: "A short back and sides or a full restyle, built on classic technique, in a shape that holds as it grows.",
   },
   {
-    title: "Colour, kept kind",
-    body: "Tonal work matched to your skin, with bond care built into the process.",
+    title: "Colour that suits you",
+    body: "Goldwell colour matched to your skin tone, with bond care built into the process.",
   },
   {
-    title: "An unhurried chair",
-    body: "One client at a time, never rushed, and honest advice about what will work.",
+    title: "Time in the chair",
+    body: "One client at a time, never rushed, and a straight answer about what will work.",
   },
 ];
 
@@ -33,7 +33,7 @@ export const SERVICES: readonly Service[] = [
   {
     name: "Restyle",
     price: "from £65",
-    blurb: "A full change of shape and direction, planned together before we begin.",
+    blurb: "A full change of shape and direction, agreed at consultation.",
   },
   {
     name: "Colour",

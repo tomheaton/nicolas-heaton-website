@@ -15,7 +15,7 @@ export const GET: APIRoute = ({ site }) => {
 
 > ${SITE.description}
 
-Nicolas Heaton is a small, independent hairdresser based at ${SITE.addressLine1}, ${SITE.addressLocality}. Every appointment starts with a consultation, and appointments are made by phone.
+Nicolas Heaton is a small, independent hairdresser based at ${SITE.addressLine1}, ${SITE.addressLocality}, working with every kind of hair — a short back and sides through to full colour. Appointments start with a consultation and are made by phone.
 
 ## Visit
 - [Homepage](${url("/")})
