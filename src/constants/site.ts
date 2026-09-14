@@ -11,11 +11,10 @@ export const SITE = {
   phoneTel: "+441666822158",
   email: "hello@nicolasheaton.uk",
   addressLine1: "16 Griffin Alley",
-  addressLine2: "Malmesbury, SN16 9TY",
+  addressLine2: "Malmesbury, SN16 9AU",
   addressLocality: "Malmesbury",
   addressRegion: "Wiltshire",
-  postcode: "SN16 9TY",
-  mapPostcode: "SN16 9AU",
+  postcode: "SN16 9AU",
   what3words: "smokers.eradicate.gateway",
   mapsEmbedUrl:
     "https://www.google.com/maps?q=16%20Griffin%20Alley,%20Malmesbury%20SN16%209AU&z=16&output=embed",
