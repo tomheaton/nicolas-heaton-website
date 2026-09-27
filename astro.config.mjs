@@ -10,7 +10,7 @@ export default defineConfig({
       provider: fontProviders.google(),
       name: "Outfit",
       cssVariable: "--font-outfit",
-      weights: [300, 400, 500, 600, 700, 800],
+      weights: [400, 500, 600],
       subsets: ["latin"],
     },
     {

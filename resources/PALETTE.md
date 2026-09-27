@@ -28,7 +28,7 @@ The font used in the logo and monogram is `quasar-didone-regular.ttf`.
 | Champagne | `#e5d3a6` | 229, 211, 166 | 0/8/28/10 | Sub-headings and links on dark. |
 | Ash | `#b4aca0` | 180, 172, 160 | 0/4/11/29 | Secondary text on dark. |
 | Ink Muted | `#5c5449` | 92, 84, 73 | 0/9/21/64 | Secondary text on light. |
-| Brass Deep | `#8a6f3e` | 138, 111, 62 | 0/20/55/46 | Brass-coloured **text** on pale grounds only. |
+| Brass Deep | `#75603a` | 117, 96, 58 | 0/18/50/54 | Brass-coloured **text** on pale grounds only. Darkened in Sept 2026 to pass 4.5:1 on ivory. |
 | Onyx Deep | `#0e0c0b` | 14, 12, 11 | 0/14/21/95 | Recessed dark — footer, drawer. |
 | Onyx Raised | `#1d1a17` | 29, 26, 23 | 0/10/21/89 | Raised dark — panels on onyx. |
 | Jade Deep | `#102721` | 16, 39, 33 | 59/0/15/85 | Recessed jade. |

@@ -7,7 +7,7 @@ import { SITE } from "@/constants/site.ts";
 
 <section class="section light" id="about">
   <div class="wrap about-grid">
-    <div class="reveal">
+    <div>
       <p class="eyebrow">About</p>
       <h2>More than a haircut</h2>
       <Rule align="left" />
@@ -23,7 +23,7 @@ import { SITE } from "@/constants/site.ts";
         Call to book
       </Button>
     </div>
-    <ul class="points reveal" data-delay="1">
+    <ul class="points">
       {POINTS.map((point) => (
         <li>
           <span class="mark" />
@@ -55,11 +55,11 @@ import { SITE } from "@/constants/site.ts";
     display: flex;
     gap: 1.1rem;
     padding: 1.35rem 0;
-    border-top: 1px solid rgba(20, 18, 16, 0.12);
+    border-top: 1px solid color-mix(in srgb, var(--color-onyx) 12%, transparent);
   }
 
   .points li:last-child {
-    border-bottom: 1px solid rgba(20, 18, 16, 0.12);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-onyx) 12%, transparent);
   }
 
   .points .mark {

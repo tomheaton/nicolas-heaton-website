@@ -27,13 +27,13 @@ import { SITE } from "@/constants/site.ts";
 <style>
   .hero {
     position: relative;
-    min-height: 100svh;
+    min-height: min(88svh, 860px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 120px var(--gutter) 60px;
+    padding: clamp(96px, 12vh, 140px) var(--gutter) clamp(56px, 8vh, 96px);
     overflow: hidden;
     background: radial-gradient(
       120% 80% at 50% 20%,
@@ -53,12 +53,12 @@ import { SITE } from "@/constants/site.ts";
     background:
       radial-gradient(
         ellipse 48% 44% at 50% 44%,
-        rgba(14, 12, 11, 0.9) 0%,
-        rgba(14, 12, 11, 0.6) 52%,
-        rgba(14, 12, 11, 0) 78%
+        color-mix(in srgb, var(--color-onyx-deep) 90%, transparent) 0%,
+        color-mix(in srgb, var(--color-onyx-deep) 60%, transparent) 52%,
+        color-mix(in srgb, var(--color-onyx-deep) 0%, transparent) 78%
       ),
-      linear-gradient(180deg, rgba(14, 12, 11, 0.8) 0%, rgba(14, 12, 11, 0) 20%),
-      linear-gradient(0deg, rgba(14, 12, 11, 0.72) 0%, rgba(14, 12, 11, 0) 16%);
+      linear-gradient(180deg, color-mix(in srgb, var(--color-onyx-deep) 80%, transparent) 0%, color-mix(in srgb, var(--color-onyx-deep) 0%, transparent) 20%),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-onyx-deep) 72%, transparent) 0%, color-mix(in srgb, var(--color-onyx-deep) 0%, transparent) 16%);
   }
 
   .hero-inner {
@@ -71,7 +71,7 @@ import { SITE } from "@/constants/site.ts";
   }
 
   .hero-logo {
-    width: min(520px, 74vw);
+    width: min(380px, 64vw);
     aspect-ratio: 1.1839;
     height: auto;
     color: var(--color-ivory);
@@ -79,7 +79,7 @@ import { SITE } from "@/constants/site.ts";
   }
 
   .hero .eyebrow {
-    margin: 2.2rem 0 1rem;
+    margin: 1.8rem 0 0.8rem;
   }
 
   .hero-tag {
@@ -94,7 +94,7 @@ import { SITE } from "@/constants/site.ts";
   }
 
   .hero-sub {
-    color: rgba(245, 240, 230, 0.8);
+    color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
     max-width: 44ch;
     margin: 1.4rem auto 2.3rem;
     font-size: 1.02rem;
@@ -123,11 +123,11 @@ import { SITE } from "@/constants/site.ts";
       background:
         radial-gradient(
           ellipse 78% 42% at 50% 42%,
-          rgba(14, 12, 11, 0.92) 0%,
-          rgba(14, 12, 11, 0.62) 55%,
-          rgba(14, 12, 11, 0) 82%
+          color-mix(in srgb, var(--color-onyx-deep) 92%, transparent) 0%,
+          color-mix(in srgb, var(--color-onyx-deep) 62%, transparent) 55%,
+          color-mix(in srgb, var(--color-onyx-deep) 0%, transparent) 82%
         ),
-        linear-gradient(180deg, rgba(14, 12, 11, 0.85) 0%, rgba(14, 12, 11, 0) 22%);
+        linear-gradient(180deg, color-mix(in srgb, var(--color-onyx-deep) 85%, transparent) 0%, color-mix(in srgb, var(--color-onyx-deep) 0%, transparent) 22%);
     }
   }
 

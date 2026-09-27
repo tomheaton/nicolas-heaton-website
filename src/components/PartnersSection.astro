@@ -35,7 +35,7 @@ import { PARTNERS } from "@/constants/content.ts";
   }
 
   .partners .eyebrow {
-    color: #8a6f3e;
+    color: var(--color-brass-deep);
   }
 
   .partners h2 {
@@ -54,7 +54,7 @@ import { PARTNERS } from "@/constants/content.ts";
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: clamp(28px, 7vw, 90px);
+    gap: clamp(32px, 6vw, 72px);
     margin-top: clamp(28px, 4vw, 46px);
   }
 
@@ -64,9 +64,15 @@ import { PARTNERS } from "@/constants/content.ts";
   }
 
   .partner-row img {
-    height: 68px;
+    height: 48px;
     width: auto;
-    max-width: 320px;
+    max-width: 200px;
     object-fit: contain;
+  }
+
+  @media (max-width: 640px) {
+    .partner-row img {
+      height: 36px;
+    }
   }
 </style>

@@ -67,7 +67,7 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
     align-items: center;
     gap: 0.6rem;
     margin: -0.5rem 0 1.15rem;
-    font-size: 0.68rem;
+    font-size: 0.76rem;
     letter-spacing: var(--tracking-mid);
     text-transform: uppercase;
     color: var(--color-ash);
@@ -78,7 +78,7 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
     width: 7px;
     height: 7px;
     transform: rotate(45deg);
-    background: rgba(180, 172, 160, 0.45);
+    background: color-mix(in srgb, var(--color-ash) 45%, transparent);
   }
 
   .status.open {
@@ -87,7 +87,7 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
 
   .status.open::before {
     background: var(--color-brass);
-    box-shadow: 0 0 0 4px rgba(192, 149, 83, 0.15);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brass) 15%, transparent);
   }
 
   .hours {
@@ -101,7 +101,7 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.72rem 0;
-    border-bottom: 1px solid rgba(192, 149, 83, 0.16);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-brass) 16%, transparent);
     font-size: 0.92rem;
     letter-spacing: 0.03em;
   }
@@ -119,7 +119,7 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
   }
 
   .hours .shut .hrs {
-    color: rgba(180, 172, 160, 0.45);
+    color: color-mix(in srgb, var(--color-ash) 70%, transparent);
   }
 
   .hours li.today {

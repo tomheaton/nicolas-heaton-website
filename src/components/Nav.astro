@@ -58,13 +58,13 @@ import { SITE } from "@/constants/site.ts";
     right: 0;
     bottom: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(192, 149, 83, 0.5), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-brass) 50%, transparent), transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
   }
 
   .nav.stuck {
-    background: rgba(14, 12, 11, 0.94);
+    background: var(--color-onyx-deep);
     backdrop-filter: blur(10px);
     padding-block: 9px;
   }
@@ -109,7 +109,7 @@ import { SITE } from "@/constants/site.ts";
 
   .nav-links a {
     text-decoration: none;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: var(--tracking-mid);
     text-transform: uppercase;
@@ -143,14 +143,14 @@ import { SITE } from "@/constants/site.ts";
 
   .nav .btn {
     padding: 0.85em 1.5em;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
   }
 
   .burger {
     display: none;
     width: 44px;
     height: 44px;
-    border: 1px solid rgba(192, 149, 83, 0.4);
+    border: 1px solid color-mix(in srgb, var(--color-brass) 40%, transparent);
     background: none;
     cursor: pointer;
     padding: 0;
