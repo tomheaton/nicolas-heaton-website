@@ -9,6 +9,7 @@
     "includes": [
       "**/*",
       "!**/.astro",
+      "!**/.claude",
       "!**/dist",
       "!**/node_modules",
       "!**/public",
@@ -52,5 +53,19 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off",
+            "noUnresolvedImports": "off"
+          }
+        }
+      }
+    }
+  ]
 }

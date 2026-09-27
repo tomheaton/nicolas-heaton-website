@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Nicolas Heaton",
-  domain: "nicolasheaton.uk",
+  domain: "www.nicolasheaton.uk",
   title: "Nicolas Heaton — Hairdresser, Malmesbury",
   description:
     "Precision cutting, colour, and styling in Malmesbury, Wiltshire. By appointment — 01666 822158.",

@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import { DAY_NAMES, HOURS } from "@/constants/content.ts";
 import { OG_IMAGE, SITE } from "@/constants/site.ts";
+import { formatTime24 } from "@/lib/hours.ts";
 import "@/styles/globals.css";
 
 interface Props {
@@ -18,16 +19,11 @@ const openingHours = Object.entries(HOURS)
   .filter((entry) => entry.hours !== null)
   .map(({ day, hours }) => {
     const [open, close] = hours as readonly [number, number];
-    const clock = (h: number) => {
-      const hr = Math.floor(h);
-      const min = Math.round((h - hr) * 60);
-      return `${String(hr).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
-    };
     return {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: DAY_NAMES[day],
-      opens: clock(open),
-      closes: clock(close),
+      opens: formatTime24(open),
+      closes: formatTime24(close),
     };
   });
 

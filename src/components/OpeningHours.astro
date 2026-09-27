@@ -1,17 +1,10 @@
 ---
 import { DAY_NAMES, HOURS, HOURS_DISPLAY } from "@/constants/content.ts";
-
-const clock = (h: number) => {
-  const hr = Math.floor(h);
-  const mn = Math.round((h - hr) * 60);
-  const ap = hr < 12 ? "am" : "pm";
-  const h12 = hr % 12 === 0 ? 12 : hr % 12;
-  return `${h12}${mn ? `:${mn < 10 ? "0" : ""}${mn}` : ""}${ap}`;
-};
+import { formatTime12 } from "@/lib/hours.ts";
 
 const rows = HOURS_DISPLAY.map(({ day, name }) => {
   const hours = HOURS[day];
-  const label = hours ? `${clock(hours[0])} – ${clock(hours[1])}` : "Closed";
+  const label = hours ? `${formatTime12(hours[0])} – ${formatTime12(hours[1])}` : "Closed";
   return { day, name, label, closed: hours === null };
 });
 ---
@@ -19,7 +12,7 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
 <div class="panel frame">
   <h3>Opening hours</h3>
   <p class="status" id="status"></p>
-  <ul class="hours" id="hours">
+  <ul class="hours" id="hours" data-hours={JSON.stringify(HOURS)} data-days={JSON.stringify(DAY_NAMES)}>
     {rows.map((row) => (
       <li data-day={row.day} class={row.closed ? "shut" : undefined}>
         <span class="day">{row.name}</span>
@@ -29,26 +22,19 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
   </ul>
 </div>
 
-<script is:inline define:vars={{ hours: HOURS, dayNames: DAY_NAMES }}>
-  const schedule = hours;
-
-  const clock = (h) => {
-    const hr = Math.floor(h);
-    const mn = Math.round((h - hr) * 60);
-    const ap = hr < 12 ? "am" : "pm";
-    const h12 = hr % 12 === 0 ? 12 : hr % 12;
-    return `${h12}${mn ? `:${mn < 10 ? "0" : ""}${mn}` : ""}${ap}`;
-  };
+<script>
+  import { formatTime12 } from "@/lib/hours.ts";
 
   const list = document.getElementById("hours");
   const statusEl = document.getElementById("status");
   if (list && statusEl) {
+    const schedule: Record<string, [number, number] | null> = JSON.parse(list.dataset.hours ?? "{}");
+    const dayNames: string[] = JSON.parse(list.dataset.days ?? "[]");
     const now = new Date();
     const d = now.getDay();
     const t = now.getHours() + now.getMinutes() / 60;
-    const rows = new Map();
-    for (const child of Array.from(list.children)) {
-      const li = child;
+    const rows = new Map<string, Element>();
+    for (const li of Array.from(list.children)) {
       const day = li.getAttribute("data-day");
       if (day !== null) rows.set(day, li);
     }
@@ -65,10 +51,10 @@ const rows = HOURS_DISPLAY.map(({ day, name }) => {
       }
     }
 
-    const today = schedule[d];
+    const today = schedule[String(d)];
     if (today && t >= today[0] && t < today[1]) {
       statusEl.className = "status open";
-      statusEl.textContent = `Open now · until ${clock(today[1])}`;
+      statusEl.textContent = `Open now · until ${formatTime12(today[1])}`;
     } else {
       statusEl.style.display = "none";
     }

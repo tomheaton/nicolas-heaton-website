@@ -9,6 +9,9 @@ Reference for print work. Values are taken from the live site, **nicolasheaton.u
 | `logo.svg` | Full lockup — monogram, wordmark, rule, "HAIRDRESSER", fan | 2016 × 1696 | 1.19 : 1 landscape |
 | `monogram.svg` | NH monogram only | 756 × 1065 | 0.71 : 1 portrait |
 
+These are print exports. The web source files are `src/assets/logo.svg` and
+`src/assets/monogram.svg`; change those first and re-export here.
+
 Vector, single colour, transparent background, cropped tight to the artwork. They
 open as **solid black** — select and apply any swatch to recolour.
 

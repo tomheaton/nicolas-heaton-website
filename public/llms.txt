@@ -5,10 +5,10 @@
 Nicolas Heaton is a small, independent hairdresser based at 16 Griffin Alley, Malmesbury. Every appointment starts with a consultation, and appointments are made by phone.
 
 ## Visit
-- [Homepage](https://nicolasheaton.uk/)
-- [Opening hours](https://nicolasheaton.uk/#visit)
-- [Price list](https://nicolasheaton.uk/#services)
-- [Reviews](https://nicolasheaton.uk/#reviews)
+- [Homepage](https://www.nicolasheaton.uk/)
+- [Opening hours](https://www.nicolasheaton.uk/#visit)
+- [Price list](https://www.nicolasheaton.uk/#services)
+- [Reviews](https://www.nicolasheaton.uk/#reviews)
 
 ## Contact
 - Address: 16 Griffin Alley, Malmesbury, SN16 9AU

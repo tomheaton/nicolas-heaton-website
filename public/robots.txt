@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nicolasheaton.uk/sitemap-index.xml
+Sitemap: https://www.nicolasheaton.uk/sitemap-index.xml

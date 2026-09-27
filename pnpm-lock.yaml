@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@astrojs/sitemap':
-        specifier: latest
+        specifier: ^3.7.3
         version: 3.7.3
       '@lucide/astro':
         specifier: ^1.31.0

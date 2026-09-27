@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
-  site: "https://nicolasheaton.uk",
+  site: "https://www.nicolasheaton.uk",
   fonts: [
     {
       provider: fontProviders.google(),

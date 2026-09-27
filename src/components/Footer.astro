@@ -1,6 +1,6 @@
 ---
 import { Mail, Phone } from "@lucide/astro";
-import Logo from "@/assets/logo.svg";
+import Monogram from "@/assets/monogram.svg";
 import { NAV } from "@/constants/nav.ts";
 import { SITE } from "@/constants/site.ts";
 
@@ -10,11 +10,14 @@ const year = new Date().getFullYear();
 <footer class="foot">
   <div class="wrap foot-grid">
     <div>
-      <Logo class="logo" role="img" aria-label="Nicolas Heaton Hairdresser" />
+      <a class="foot-brand" href="/#top" aria-label={SITE.name}>
+        <Monogram class="foot-mark" aria-hidden="true" />
+        <span>{SITE.name}</span>
+      </a>
       <p>Precision cutting, colour, and styling in Malmesbury. By appointment.</p>
     </div>
     <div>
-      <h4>Explore</h4>
+      <p class="foot-heading">Explore</p>
       <ul>
         {NAV.map((item) => (
           <li>
@@ -27,7 +30,7 @@ const year = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <p class="foot-heading">Contact</p>
       <div class="social">
         <a href={`tel:${SITE.phone}`} aria-label={`Call ${SITE.phoneDisplay}`}>
           <Phone stroke-width={1.5} />
@@ -76,12 +79,27 @@ const year = new Date().getFullYear();
     gap: clamp(30px, 5vw, 60px);
   }
 
-  .foot .logo {
-    width: 190px;
-    aspect-ratio: 1.1839;
-    height: auto;
+  .foot-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
     color: var(--color-ivory);
-    opacity: 0.92;
+  }
+
+  .foot-mark {
+    height: 52px;
+    width: auto;
+    display: block;
+  }
+
+  .foot-brand span {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .foot p {
@@ -91,7 +109,7 @@ const year = new Date().getFullYear();
     margin-top: 1.4rem;
   }
 
-  .foot h4 {
+  .foot-heading {
     font-family: var(--font-sans);
     font-weight: 500;
     font-size: 0.66rem;
