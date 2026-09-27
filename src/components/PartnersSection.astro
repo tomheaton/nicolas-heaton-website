@@ -1,44 +1,45 @@
 ---
 import Rule from "@/components/ui/Rule.astro";
-import { PRODUCTS } from "@/constants/content.ts";
+import { PARTNERS } from "@/constants/content.ts";
 ---
 
-<section class="products" id="products">
+<section class="partners" id="partners">
   <div class="wrap">
-    <p class="eyebrow">Products</p>
-    <h2>What we use</h2>
+    <p class="eyebrow">Partners</p>
+    <h2>Who we work with</h2>
     <Rule tight class="mt-[1.2rem] mb-0" />
     <div class="partner-row">
-      {PRODUCTS.map((product) => (
+      {PARTNERS.map((partner) => (
         <a
-          href={product.url}
+          href={partner.url}
           target="_blank"
           rel="external noopener noreferrer"
-          aria-label={`${product.name} website`}
+          aria-label={`${partner.name} website`}
         >
-          <img src={product.image} alt={`${product.name} logo`} />
+          <img src={partner.image} alt={`${partner.name} logo`} />
         </a>
       ))}
     </div>
     <p class="partner-note">
-      Goldwell colour and KMS care and styling, used in the salon and available to buy.
+      Goldwell colour and KMS care and styling, used in the salon and available to buy. Coffee
+      from Rave in Cirencester.
     </p>
   </div>
 </section>
 
 <style>
-  .products {
+  .partners {
     background: var(--color-ivory-shade);
     color: var(--color-ink);
     padding-block: clamp(38px, 6vw, 64px);
     text-align: center;
   }
 
-  .products .eyebrow {
+  .partners .eyebrow {
     color: #8a6f3e;
   }
 
-  .products h2 {
+  .partners h2 {
     color: var(--color-ink);
     font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   }

@@ -92,22 +92,27 @@ export const REVIEWS: readonly Review[] = [
   },
 ];
 
-export interface Product {
+export interface Partner {
   name: string;
   image: string;
   url: string;
 }
 
-export const PRODUCTS: readonly Product[] = [
+export const PARTNERS: readonly Partner[] = [
   {
     name: "Goldwell",
-    image: "/products/goldwell.svg",
+    image: "/partners/goldwell.svg",
     url: "https://www.goldwell.com/en-gb/home/",
   },
   {
     name: "KMS",
-    image: "/products/kms.png",
+    image: "/partners/kms.png",
     url: "https://www.kmshair.com/en-UK/",
+  },
+  {
+    name: "Rave Coffee",
+    image: "/partners/rave.svg",
+    url: "https://ravecoffee.co.uk/",
   },
 ];
 
