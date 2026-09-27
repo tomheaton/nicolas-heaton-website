@@ -6,15 +6,15 @@ import { SERVICES } from "@/constants/content.ts";
 <section class="section jade" id="services">
   <div class="wrap center">
     <SectionHead
-      eyebrow="Price List"
-      title="What we do"
-      lede="Prices are a starting point. The final quote is confirmed at consultation, before anything begins."
+      eyebrow="Price list"
+      title="Prices"
+      lede="Prices are starting points. Nicolas confirms the price at your consultation, before any work begins."
       ruleClass="mt-6 mb-[1.6rem]"
     />
     <div class="menu">
       {
         SERVICES.map((service, i) => (
-          <div class="item reveal" data-delay={i % 2 === 1 ? "1" : undefined}>
+          <div class="item">
             <div class="item-head">
               <h3>{service.name}</h3>
               <span class="leader" />
@@ -25,9 +25,8 @@ import { SERVICES } from "@/constants/content.ts";
         ))
       }
     </div>
-    <p class="menu-note reveal">
-      Long or thick hair may take longer — we'll tell you the price before we
-      start, not after.
+    <p class="menu-note">
+      Long or thick hair can take more time and product, which is reflected in the price.
     </p>
   </div>
 </section>
@@ -37,29 +36,6 @@ import { SERVICES } from "@/constants/content.ts";
     background: var(--color-jade);
     color: var(--color-ivory);
     position: relative;
-  }
-
-  .jade::before,
-  .jade::after {
-    content: "";
-    position: absolute;
-    left: var(--gutter);
-    right: var(--gutter);
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(229, 211, 166, 0.35),
-      transparent
-    );
-  }
-
-  .jade::before {
-    top: 14px;
-  }
-
-  .jade::after {
-    bottom: 14px;
   }
 
   .menu {
@@ -72,18 +48,18 @@ import { SERVICES } from "@/constants/content.ts";
 
   .item {
     padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(229, 211, 166, 0.18);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-champagne) 18%, transparent);
   }
 
   .item-head {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
     gap: 0.75rem;
   }
 
   .item-head h3 {
     font-size: 1.28rem;
-    white-space: nowrap;
   }
 
   .price {
@@ -98,7 +74,7 @@ import { SERVICES } from "@/constants/content.ts";
   .item p {
     margin: 0.5rem 0 0;
     font-size: 0.94rem;
-    color: rgba(245, 240, 230, 0.68);
+    color: color-mix(in srgb, var(--color-ivory) 68%, transparent);
     max-width: 40ch;
   }
 
@@ -106,16 +82,16 @@ import { SERVICES } from "@/constants/content.ts";
     margin-top: 2.4rem;
     font-size: 0.85rem;
     letter-spacing: 0.04em;
-    color: rgba(245, 240, 230, 0.6);
+    color: color-mix(in srgb, var(--color-ivory) 60%, transparent);
     text-align: center;
   }
 
   .leader {
-    flex: 1 1 auto;
+    min-width: 16px;
     height: 1px;
     background-image: radial-gradient(
       circle,
-      rgba(229, 211, 166, 0.55) 1px,
+      color-mix(in srgb, var(--color-champagne) 55%, transparent) 1px,
       transparent 1.2px
     );
     background-size: 6px 1px;
@@ -130,17 +106,4 @@ import { SERVICES } from "@/constants/content.ts";
     }
   }
 
-  @media (max-width: 640px) {
-    .item-head {
-      flex-wrap: wrap;
-    }
-
-    .item-head h3 {
-      white-space: normal;
-    }
-
-    .leader {
-      min-width: 24px;
-    }
-  }
 </style>

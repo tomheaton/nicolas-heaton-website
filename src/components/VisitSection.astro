@@ -8,15 +8,15 @@ import { SITE } from "@/constants/site.ts";
   <div class="wrap center">
     <SectionHead
       eyebrow="Visit"
-      title="Find us in Malmesbury"
+      title="Find us"
       ruleClass="mt-6 mb-0"
     />
   </div>
   <div class="wrap visit-grid">
-    <div class="reveal">
+    <div>
       <OpeningHours />
       <div class="panel frame mt-5.5">
-        <h3>Find us</h3>
+        <h3>Address</h3>
         <div class="addr">
           {SITE.addressLine1}
           <br />
@@ -38,7 +38,7 @@ import { SITE } from "@/constants/site.ts";
         </div>
       </div>
     </div>
-    <div class="map frame reveal" data-delay="1">
+    <div class="map frame">
       <iframe
         title="Map showing Nicolas Heaton, 16 Griffin Alley, Malmesbury"
         src={SITE.mapsEmbedUrl}
@@ -48,9 +48,9 @@ import { SITE } from "@/constants/site.ts";
         class="btn"
         href={SITE.mapsDirectionsUrl}
         target="_blank"
-        rel="noopener"
+        rel="external noopener noreferrer"
       >
-        Get directions
+        Directions
       </a>
     </div>
   </div>
@@ -79,12 +79,11 @@ import { SITE } from "@/constants/site.ts";
     min-height: 400px;
     border: 0;
     display: block;
-    filter: saturate(0.7) contrast(1.02) brightness(0.95);
   }
 
   .map .btn {
     border: 0;
-    border-top: 1px solid rgba(192, 149, 83, 0.28);
+    border-top: 1px solid color-mix(in srgb, var(--color-brass) 28%, transparent);
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
   }
@@ -99,7 +98,7 @@ import { SITE } from "@/constants/site.ts";
   .addr a {
     color: var(--color-champagne);
     text-decoration: none;
-    border-bottom: 1px solid rgba(229, 211, 166, 0.35);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-champagne) 35%, transparent);
   }
 
   .addr a:hover {
@@ -113,7 +112,7 @@ import { SITE } from "@/constants/site.ts";
     margin-top: 1rem;
     padding: 0.6rem 0.9rem;
     background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(192, 149, 83, 0.25);
+    border: 1px solid color-mix(in srgb, var(--color-brass) 25%, transparent);
     font-size: 0.82rem;
     letter-spacing: 0.04em;
     color: var(--color-champagne);

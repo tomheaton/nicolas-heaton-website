@@ -35,7 +35,7 @@ import { PARTNERS } from "@/constants/content.ts";
   }
 
   .partners .eyebrow {
-    color: #8a6f3e;
+    color: var(--color-brass-deep);
   }
 
   .partners h2 {
@@ -68,5 +68,16 @@ import { PARTNERS } from "@/constants/content.ts";
     width: auto;
     max-width: 320px;
     object-fit: contain;
+  }
+
+  @media (max-width: 640px) {
+    .partner-row {
+      gap: 28px 36px;
+    }
+
+    .partner-row img {
+      height: 44px;
+      max-width: min(60vw, 220px);
+    }
   }
 </style>

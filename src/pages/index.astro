@@ -1,4 +1,5 @@
 ---
+import AboutSection from "@/components/AboutSection.astro";
 import Footer from "@/components/Footer.astro";
 import Hero from "@/components/Hero.astro";
 import Nav from "@/components/Nav.astro";
@@ -6,7 +7,6 @@ import NavDrawer from "@/components/NavDrawer.astro";
 import PartnersSection from "@/components/PartnersSection.astro";
 import PriceSection from "@/components/PriceSection.astro";
 import ReviewsSection from "@/components/ReviewsSection.astro";
-import StudioSection from "@/components/StudioSection.astro";
 import VisitSection from "@/components/VisitSection.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
@@ -14,9 +14,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <BaseLayout>
   <Nav />
   <NavDrawer />
-  <main>
+  <main id="main">
     <Hero />
-    <StudioSection />
+    <AboutSection />
     <PriceSection />
     <ReviewsSection />
     <PartnersSection />

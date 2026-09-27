@@ -18,8 +18,10 @@ Astro 7 + Tailwind v4, deployed on Vercel at [nicolasheaton.uk](https://nicolash
 
 ## Assets
 
-Raster exports (`public/logo.png`, `public/monogram.png`) and the favicon are generated
-from the SVGs in `resources/`. Regenerate them after changing the logo with:
+The web source for the logo and monogram is `src/assets/logo.svg` and `src/assets/monogram.svg`.
+`resources/` holds print exports and the brand palette. Raster exports (`public/logo.png`,
+`public/monogram.png`) and the favicon are generated from the `src/assets` SVGs. Regenerate
+them after changing the logo with:
 
 ```sh
 node scripts/generate-assets.mjs

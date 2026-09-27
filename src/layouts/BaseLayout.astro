@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import { DAY_NAMES, HOURS } from "@/constants/content.ts";
 import { OG_IMAGE, SITE } from "@/constants/site.ts";
+import { formatTime24 } from "@/lib/hours.ts";
 import "@/styles/globals.css";
 
 interface Props {
@@ -18,16 +19,11 @@ const openingHours = Object.entries(HOURS)
   .filter((entry) => entry.hours !== null)
   .map(({ day, hours }) => {
     const [open, close] = hours as readonly [number, number];
-    const clock = (h: number) => {
-      const hr = Math.floor(h);
-      const min = Math.round((h - hr) * 60);
-      return `${String(hr).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
-    };
     return {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: DAY_NAMES[day],
-      opens: clock(open),
-      closes: clock(close),
+      opens: formatTime24(open),
+      closes: formatTime24(close),
     };
   });
 
@@ -72,15 +68,15 @@ const jsonLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={SITE.ogDescription} />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="Nicolas Heaton Hairdresser" />
+    <meta property="og:image:alt" content="Nicolas Heaton Hairdresser logo" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={SITE.ogDescription} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="Nicolas Heaton Hairdresser" />
+    <meta name="twitter:image:alt" content="Nicolas Heaton Hairdresser logo" />
 
     <Font cssVariable="--font-outfit" preload />
     <Font cssVariable="--font-syne" preload />
@@ -88,25 +84,11 @@ const jsonLd = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="font-sans bg-onyx text-ivory">
+    <a class="skip" href="#main">Skip to content</a>
     <slot />
     <script>
       import { inject } from "@vercel/analytics";
       inject();
-    </script>
-    <script>
-      document.documentElement.classList.add("js");
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("in");
-              io.unobserve(entry.target);
-            }
-          }
-        },
-        { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
-      );
-      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     </script>
   </body>
 </html>

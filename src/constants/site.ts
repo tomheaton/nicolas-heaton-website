@@ -1,11 +1,9 @@
 export const SITE = {
   name: "Nicolas Heaton",
-  domain: "nicolasheaton.uk",
-  title: "Nicolas Heaton — Hairdresser, Malmesbury",
+  domain: "www.nicolasheaton.uk",
+  title: "Nicolas Heaton, Hairdresser in Malmesbury",
   description:
-    "Precision cutting, colour, and styling in Malmesbury, Wiltshire. By appointment — 01666 822158.",
-  ogDescription:
-    "A calm, unhurried chair where every cut, colour, and finish is shaped around you — and built to grow out beautifully. Appointments by phone.",
+    "Independent hairdresser in Malmesbury, Wiltshire, established 2002. Cutting, colour and styling by appointment. Call 01666 822158.",
   phone: "01666822158",
   phoneDisplay: "01666 822158",
   phoneTel: "+441666822158",

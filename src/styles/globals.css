@@ -9,6 +9,7 @@
   --color-ivory: #f5f0e6;
   --color-ivory-shade: #ece4d4;
   --color-brass: #c09553;
+  --color-brass-deep: #75603a;
   --color-champagne: #e5d3a6;
   --color-ash: #b4aca0;
   --color-ink: #141210;
@@ -50,7 +51,7 @@
     background-color: var(--color-onyx);
     color: var(--color-ivory);
     font-family: var(--font-sans);
-    font-weight: 300;
+    font-weight: 400;
     font-size: clamp(15.5px, 0.55vw + 14px, 17.5px);
     line-height: 1.72;
     -webkit-font-smoothing: antialiased;
@@ -131,6 +132,10 @@
   & h2 {
     color: var(--color-ink);
   }
+
+  & .eyebrow {
+    color: var(--color-brass-deep);
+  }
 }
 
 /* ---------- motif: hairline + diamond rule ---------- */
@@ -183,7 +188,7 @@
 /* ---------- motif: stepped bracket frame ---------- */
 @utility frame {
   position: relative;
-  border: 1px solid rgba(192, 149, 83, 0.2);
+  border: 1px solid color-mix(in srgb, var(--color-brass) 20%, transparent);
 
   &::before,
   &::after {
@@ -210,7 +215,7 @@
   }
 
   &.on-light {
-    border-color: rgba(20, 18, 16, 0.14);
+    border-color: color-mix(in srgb, var(--color-onyx) 14%, transparent);
   }
 }
 
@@ -221,7 +226,7 @@
   gap: 0.7em;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   letter-spacing: var(--tracking-mid);
   text-transform: uppercase;
   text-decoration: none;
@@ -268,7 +273,7 @@
 
   &.on-light {
     color: var(--color-ink);
-    border-color: rgba(20, 18, 16, 0.45);
+    border-color: color-mix(in srgb, var(--color-onyx) 45%, transparent);
 
     &:hover {
       color: var(--color-onyx);
@@ -280,7 +285,7 @@
 @utility eyebrow {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--color-brass);
@@ -297,20 +302,6 @@
     text-transform: uppercase;
     margin-bottom: 1.3rem;
     color: var(--color-champagne);
-  }
-}
-
-/* ---------- motif: scroll reveal ---------- */
-@utility reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-
-  &.in {
-    opacity: 1;
-    transform: none;
   }
 }
 
@@ -338,18 +329,6 @@
   }
 }
 
-[data-delay="1"] {
-  transition-delay: 0.09s;
-}
-
-[data-delay="2"] {
-  transition-delay: 0.18s;
-}
-
-[data-delay="3"] {
-  transition-delay: 0.27s;
-}
-
 @media (min-width: 1500px) {
   :root {
     --maxw: 1400px;
@@ -371,15 +350,23 @@
     /* biome-ignore lint/complexity/noImportantStyles: must override all animation/transition declarations */
     transition-duration: 0.001ms !important;
   }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
 }
 
-/* content stays visible without JS */
-html:not(.js) .reveal {
-  opacity: 1;
+/* ---------- skip link ---------- */
+.skip {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 0.7em 1.1em;
+  background: var(--color-brass);
+  color: var(--color-onyx);
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip:focus {
   transform: none;
 }
