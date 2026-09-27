@@ -107,14 +107,14 @@ export interface Partner {
 
 export const PARTNERS: readonly Partner[] = [
   {
-    name: "Goldwell",
-    image: "/partners/goldwell.svg",
-    url: "https://www.goldwell.com/en-gb/home/",
-  },
-  {
     name: "KMS",
     image: "/partners/kms.png",
     url: "https://www.kmshair.com/en-UK/",
+  },
+  {
+    name: "Goldwell",
+    image: "/partners/goldwell.svg",
+    url: "https://www.goldwell.com/en-gb/home/",
   },
   {
     name: "Rave Coffee",
