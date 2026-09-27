@@ -1,14 +1,21 @@
-export interface Fact {
-  label: string;
-  value: string;
+export interface Point {
+  title: string;
+  body: string;
 }
 
-export const FACTS: readonly Fact[] = [
-  { label: "Established", value: "2002" },
-  { label: "Address", value: "16 Griffin Alley, Malmesbury" },
-  { label: "Colour", value: "Goldwell" },
-  { label: "Care and styling", value: "KMS" },
-  { label: "Booking", value: "By phone, 01666 822158" },
+export const POINTS: readonly Point[] = [
+  {
+    title: "Cutting",
+    body: "Classic technique, cut to a shape that holds as it grows out.",
+  },
+  {
+    title: "Colour",
+    body: "Goldwell colour matched to your skin tone, with bond care included.",
+  },
+  {
+    title: "One client at a time",
+    body: "Nothing is rushed, and you get a straight answer on what will suit you.",
+  },
 ];
 
 export interface Service {

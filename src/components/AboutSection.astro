@@ -1,7 +1,7 @@
 ---
 import Button from "@/components/ui/Button.astro";
 import Rule from "@/components/ui/Rule.astro";
-import { FACTS } from "@/constants/content.ts";
+import { POINTS } from "@/constants/content.ts";
 import { SITE } from "@/constants/site.ts";
 ---
 
@@ -23,14 +23,17 @@ import { SITE } from "@/constants/site.ts";
         Call to book
       </Button>
     </div>
-    <dl class="facts reveal" data-delay="1">
-      {FACTS.map((fact) => (
-        <div>
-          <dt>{fact.label}</dt>
-          <dd>{fact.value}</dd>
-        </div>
+    <ul class="points reveal" data-delay="1">
+      {POINTS.map((point) => (
+        <li>
+          <span class="mark" />
+          <div>
+            <h3>{point.title}</h3>
+            <p>{point.body}</p>
+          </div>
+        </li>
       ))}
-    </dl>
+    </ul>
   </div>
 </section>
 
@@ -42,35 +45,64 @@ import { SITE } from "@/constants/site.ts";
     align-items: center;
   }
 
-  .facts {
+  .points {
+    list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .facts div {
-    display: grid;
-    grid-template-columns: 9rem 1fr;
-    gap: 1rem;
-    padding: 0.95rem 0;
+  .points li {
+    display: flex;
+    gap: 1.1rem;
+    padding: 1.35rem 0;
     border-top: 1px solid rgba(20, 18, 16, 0.12);
   }
 
-  .facts div:last-child {
+  .points li:last-child {
     border-bottom: 1px solid rgba(20, 18, 16, 0.12);
   }
 
-  .facts dt {
-    font-weight: 500;
-    font-size: 0.68rem;
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: #8a6f3e;
-    padding-top: 0.25rem;
+  .points .mark {
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    margin-top: 0.3rem;
+    position: relative;
   }
 
-  .facts dd {
-    margin: 0;
+  .points .mark::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 13px;
+    height: 13px;
+    margin: -6.5px 0 0 -6.5px;
+    border: 1px solid var(--color-brass);
+    transform: rotate(45deg);
+  }
+
+  .points .mark::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1px;
+    height: 24px;
+    margin: -12px 0 0 -0.5px;
+    background: var(--color-brass);
+    opacity: 0.45;
+  }
+
+  .points h3 {
+    font-size: 1.12rem;
+    margin-bottom: 0.25rem;
     color: var(--color-ink);
+  }
+
+  .points p {
+    margin: 0;
+    font-size: 0.95rem;
   }
 
   @media (max-width: 940px) {
