@@ -1,0 +1,81 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Rule from "@/components/ui/Rule.astro";
+import { FACTS } from "@/constants/content.ts";
+import { SITE } from "@/constants/site.ts";
+---
+
+<section class="section light" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <p class="eyebrow">About</p>
+      <h2>The salon</h2>
+      <Rule align="left" />
+      <p class="lede">
+        Nicolas Heaton has cut hair in Malmesbury since 2002. The salon is small and independent,
+        and appointments are spaced so there is time for each client.
+      </p>
+      <p>
+        Every visit starts with a consultation. Nicolas will say what will work for your hair and
+        how you wear it, and confirm the price before starting.
+      </p>
+      <Button href={`tel:${SITE.phone}`} variant="on-light" class="mt-[0.8rem]">
+        Call to book
+      </Button>
+    </div>
+    <dl class="facts reveal" data-delay="1">
+      {FACTS.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(36px, 6vw, 90px);
+    align-items: center;
+  }
+
+  .facts {
+    margin: 0;
+    padding: 0;
+  }
+
+  .facts div {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    padding: 0.95rem 0;
+    border-top: 1px solid rgba(20, 18, 16, 0.12);
+  }
+
+  .facts div:last-child {
+    border-bottom: 1px solid rgba(20, 18, 16, 0.12);
+  }
+
+  .facts dt {
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: #8a6f3e;
+    padding-top: 0.25rem;
+  }
+
+  .facts dd {
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 940px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

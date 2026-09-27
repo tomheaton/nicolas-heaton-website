@@ -8,22 +8,21 @@ import { SITE } from "@/constants/site.ts";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title={`Page not found — ${SITE.name}`}>
+<BaseLayout title={`Page not found, ${SITE.name}`}>
   <Nav />
   <NavDrawer />
   <main>
     <section class="notfound reveal">
       <div class="notfound-inner">
-        <p class="eyebrow">Malmesbury · Wiltshire</p>
+        <p class="eyebrow">Malmesbury, Wiltshire</p>
         <p class="code" aria-hidden="true">404</p>
         <Rule />
-        <h1 class="notfound-tag">This chair's empty by mistake.</h1>
+        <h1 class="notfound-tag">Page not found</h1>
         <p class="notfound-sub">
-          The page you're looking for has been trimmed away. Let's get you back to somewhere
-          familiar.
+          That page does not exist. Go back to the homepage, or call to book.
         </p>
         <div class="notfound-cta">
-          <a class="btn solid" href="/">Back to home</a>
+          <a class="btn solid" href="/">Homepage</a>
           <Button href={`tel:${SITE.phone}`}>Call {SITE.phoneDisplay}</Button>
         </div>
       </div>

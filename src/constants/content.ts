@@ -1,21 +1,14 @@
-export interface Virtue {
-  title: string;
-  body: string;
+export interface Fact {
+  label: string;
+  value: string;
 }
 
-export const VIRTUES: readonly Virtue[] = [
-  {
-    title: "Precision cutting",
-    body: "Trained on classic technique, cut to a shape that holds as it grows.",
-  },
-  {
-    title: "Colour, kept kind",
-    body: "Tonal work matched to your skin, with bond care built into the process.",
-  },
-  {
-    title: "An unhurried chair",
-    body: "One client at a time, never rushed, and honest advice about what will work.",
-  },
+export const FACTS: readonly Fact[] = [
+  { label: "Established", value: "2002" },
+  { label: "Address", value: "16 Griffin Alley, Malmesbury" },
+  { label: "Colour", value: "Goldwell" },
+  { label: "Care and styling", value: "KMS" },
+  { label: "Booking", value: "By phone, 01666 822158" },
 ];
 
 export interface Service {
@@ -28,105 +21,97 @@ export const SERVICES: readonly Service[] = [
   {
     name: "Cut & Finish",
     price: "from £56",
-    blurb: "A consultation-led cut, dried and finished so it sits right from day one.",
+    blurb: "Consultation, cut and blow-dry.",
   },
   {
     name: "Restyle",
     price: "from £65",
-    blurb: "A full change of shape and direction, planned together before we begin.",
+    blurb: "A new shape or length, planned with you before cutting.",
   },
   {
     name: "Colour",
     price: "from £60",
-    blurb: "Full colour, root work, and tonal refresh, matched carefully to your skin tone.",
+    blurb: "Full head, roots or a tonal refresh, using Goldwell colour.",
   },
   {
     name: "Highlights & Balayage",
     price: "from £90",
-    blurb: "Hand-painted lightening for depth and movement that grows out softly.",
+    // TODO(tom): confirm whether foils, hand-painted, or both are offered
+    blurb: "Highlights or hand-painted balayage.",
   },
   {
     name: "Treatments",
     price: "from £28",
-    blurb: "Bond-building and conditioning treatments to bring back strength and shine.",
+    blurb: "Bond-repair and conditioning treatments.",
   },
   {
     name: "Occasion Styling",
     price: "from £25",
-    blurb: "Blow-dry, waves, or dressed hair for weddings, events, and portraits.",
+    blurb: "Blow-dry, waves or put-up hair for weddings and events.",
   },
 ];
 
 export interface Review {
   quote: string;
   name: string;
-  service: string;
+  /** Where the review was left, e.g. "Google". Shown after the name when set. */
+  source?: string;
 }
 
+// TODO(tom): confirm the source of these reviews and that the wording is verbatim
 export const REVIEWS: readonly Review[] = [
   {
     quote:
       "Nicolas is fabulous — listens to what you want and produces the magic. Definitely my permanent hairdresser.",
     name: "Kerry J.",
-    service: "Cut & Colour",
   },
   {
     quote:
       "I didn't really need to tell Nicolas what I wanted — he just knew what would work. He knows so much about hair and gives the best advice.",
     name: "Nicola H.",
-    service: "Hairstyling",
   },
   {
     quote:
       "Nicolas knew exactly what would suit me and gave some useful haircare tips as well. Really happy with the results and made me feel at ease throughout.",
     name: "Hannah T.",
-    service: "Cut & Finish",
   },
   {
     quote:
       "Nicolas styled my hair brilliantly. Very professional, and knew his stuff about hair. A great haircut in a friendly atmosphere.",
     name: "Diane N.",
-    service: "Cut & Finish",
   },
   {
     quote:
       "Such a treat to be looked after by Nicolas. The conversation and hair cut were first class — really happy customer.",
     name: "Michelle S.",
-    service: "Cut & Finish",
   },
   {
     quote:
       "Professional hairdresser who understands your needs just by watching you — I could even go to a photo shoot straight after!",
     name: "Vee V.",
-    service: "Restyle",
   },
 ];
 
-export interface Partner {
+export interface Product {
   name: string;
   image: string;
   url: string;
 }
 
-export const PARTNERS: readonly Partner[] = [
-  {
-    name: "KMS",
-    image: "/partners/kms.png",
-    url: "https://www.kmshair.com/en-UK/",
-  },
+export const PRODUCTS: readonly Product[] = [
   {
     name: "Goldwell",
-    image: "/partners/goldwell.svg",
+    image: "/products/goldwell.svg",
     url: "https://www.goldwell.com/en-gb/home/",
   },
   {
-    name: "Rave Coffee",
-    image: "/partners/rave.svg",
-    url: "https://ravecoffee.co.uk/",
+    name: "KMS",
+    image: "/products/kms.png",
+    url: "https://www.kmshair.com/en-UK/",
   },
 ];
 
-/** Opening hours keyed by JS `Date.prototype.getDay()` — 0 is Sunday. `null` = closed. */
+/** Opening hours keyed by JS `Date.prototype.getDay()`, where 0 is Sunday. `null` = closed. */
 export const HOURS: Readonly<Record<number, readonly [number, number] | null>> = {
   0: null,
   1: null,

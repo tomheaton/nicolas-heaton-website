@@ -8,7 +8,7 @@ import { SITE } from "@/constants/site.ts";
   <div class="wrap center">
     <SectionHead
       eyebrow="Visit"
-      title="Find us in Malmesbury"
+      title="Find us"
       ruleClass="mt-6 mb-0"
     />
   </div>
@@ -16,7 +16,7 @@ import { SITE } from "@/constants/site.ts";
     <div class="reveal">
       <OpeningHours />
       <div class="panel frame mt-5.5">
-        <h3>Find us</h3>
+        <h3>Address</h3>
         <div class="addr">
           {SITE.addressLine1}
           <br />
@@ -25,6 +25,8 @@ import { SITE } from "@/constants/site.ts";
           <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
           {" · "}
           <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          {/* TODO(tom): confirm coffee is served and is from Rave */}
+          <p class="coffee">Coffee is from Rave, roasted in Cirencester.</p>
           <div>
             <a
               class="w3w"
@@ -50,7 +52,7 @@ import { SITE } from "@/constants/site.ts";
         target="_blank"
         rel="external noopener noreferrer"
       >
-        Get directions
+        Directions
       </a>
     </div>
   </div>
@@ -104,6 +106,11 @@ import { SITE } from "@/constants/site.ts";
 
   .addr a:hover {
     color: var(--color-brass);
+  }
+
+  .coffee {
+    margin: 0.6rem 0 0;
+    color: var(--color-ash);
   }
 
   .w3w {
