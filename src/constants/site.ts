@@ -15,7 +15,7 @@ export const SITE = {
   postcode: "SN16 9AU",
   what3words: "smokers.eradicate.gateway",
   mapsEmbedUrl:
-    "https://www.google.com/maps?q=16%20Griffin%20Alley,%20Malmesbury%20SN16%209AU&z=16&output=embed",
+    "https://www.google.com/maps/embed?pb=!1m3!3m2!1m1!4s14375643521388233572",
   mapsDirectionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=16+Griffin+Alley+Malmesbury+SN16+9AU",
 } as const;
