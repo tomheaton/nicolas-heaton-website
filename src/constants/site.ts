@@ -14,8 +14,7 @@ export const SITE = {
   addressRegion: "Wiltshire",
   postcode: "SN16 9AU",
   what3words: "smokers.eradicate.gateway",
-  mapsEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m3!3m2!1m1!4s14375643521388233572",
+  mapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m3!3m2!1m1!4s14375643521388233572",
   mapsDirectionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=16+Griffin+Alley+Malmesbury+SN16+9AU",
 } as const;

@@ -1,12 +1,12 @@
 ---
 import Rule from "@/components/ui/Rule.astro";
-import { PARTNERS } from "@/constants/content.ts";
+import { PARTNERS, PARTNERS_NOTE, PARTNERS_TITLE } from "@/constants/content.ts";
 ---
 
 <section class="partners" id="partners">
   <div class="wrap">
     <p class="eyebrow">Partners</p>
-    <h2>The brands on our shelves</h2>
+    <h2>{PARTNERS_TITLE}</h2>
     <Rule tight class="mt-[1.2rem] mb-0" />
     <div class="partner-row">
       {PARTNERS.map((partner) => (
@@ -20,9 +20,7 @@ import { PARTNERS } from "@/constants/content.ts";
         </a>
       ))}
     </div>
-    <p class="partner-note">
-      Colour, care, and styling products we use in the chair and sell to take home.
-    </p>
+    <p class="partner-note">{PARTNERS_NOTE}</p>
   </div>
 </section>
 

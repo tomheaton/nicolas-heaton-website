@@ -1,0 +1,43 @@
+---
+import Rule from "@/components/ui/Rule.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+}
+
+const { eyebrow = "Malmesbury, Wiltshire", title, lede } = Astro.props;
+---
+
+<section class="page-head" id="top">
+  <div class="wrap center">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <Rule class="mt-6 mb-0" />
+    {lede && <p class="lede">{lede}</p>}
+  </div>
+</section>
+
+<style>
+  .page-head {
+    padding: clamp(140px, 18vh, 200px) 0 clamp(56px, 8vw, 96px);
+    background: radial-gradient(
+      120% 80% at 50% 20%,
+      #1f1b18 0%,
+      var(--color-onyx) 55%,
+      var(--color-onyx-deep) 100%
+    );
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    color: var(--color-ivory);
+  }
+
+  .lede {
+    margin-top: 1.8rem;
+    margin-bottom: 0;
+    color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
+  }
+</style>
