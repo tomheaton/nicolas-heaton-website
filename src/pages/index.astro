@@ -8,10 +8,11 @@ import PartnersSection from "@/components/PartnersSection.astro";
 import PriceSection from "@/components/PriceSection.astro";
 import ReviewsSection from "@/components/ReviewsSection.astro";
 import VisitSection from "@/components/VisitSection.astro";
+import { HOME_PAGE } from "@/constants/pages.ts";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
+<BaseLayout markdownPath={HOME_PAGE.markdownPath}>
   <Nav />
   <NavDrawer />
   <main id="main">

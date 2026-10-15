@@ -1,7 +1,7 @@
 ---
 import Button from "@/components/ui/Button.astro";
 import Rule from "@/components/ui/Rule.astro";
-import { POINTS } from "@/constants/content.ts";
+import { ABOUT, POINTS } from "@/constants/content.ts";
 import { SITE } from "@/constants/site.ts";
 ---
 
@@ -9,16 +9,10 @@ import { SITE } from "@/constants/site.ts";
   <div class="wrap about-grid">
     <div>
       <p class="eyebrow">About</p>
-      <h2>More than a haircut</h2>
+      <h2>{ABOUT.title}</h2>
       <Rule align="left" />
-      <p class="lede">
-        Nicolas Heaton is a small, independent salon in Malmesbury. The aim is hair that looks
-        right on the day and is easy to manage between visits.
-      </p>
-      <p>
-        Every appointment starts with a consultation, so the cut suits your hair, your routine and
-        how you wear it. No upselling, and the price is confirmed before anything starts.
-      </p>
+      <p class="lede">{ABOUT.lede}</p>
+      <p>{ABOUT.body}</p>
       <Button href={`tel:${SITE.phone}`} variant="on-light" class="mt-[0.8rem]">
         Call to book
       </Button>

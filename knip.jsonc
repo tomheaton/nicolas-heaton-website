@@ -1,5 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Vercel Routing Middleware: Vercel reads the default export and `config`.
+  "entry": ["middleware.ts"],
   "ignore": ["scripts/generate-assets.mjs"],
   "ignoreDependencies": ["@vercel/analytics"]
 }

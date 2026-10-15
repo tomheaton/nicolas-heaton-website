@@ -1,7 +1,7 @@
 ---
 import { Mail, Phone } from "@lucide/astro";
 import Monogram from "@/assets/monogram.svg";
-import { NAV } from "@/constants/nav.ts";
+import { FOOTER_LINKS, NAV } from "@/constants/nav.ts";
 import { SITE } from "@/constants/site.ts";
 
 const year = new Date().getFullYear();
@@ -20,6 +20,11 @@ const year = new Date().getFullYear();
       <p class="foot-heading">Pages</p>
       <ul>
         {NAV.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+        {FOOTER_LINKS.map((item) => (
           <li>
             <a href={item.href}>{item.label}</a>
           </li>

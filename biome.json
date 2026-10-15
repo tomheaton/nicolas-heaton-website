@@ -56,6 +56,25 @@
   },
   "overrides": [
     {
+      "includes": [
+        "middleware.ts",
+        "middleware.test.ts",
+        "src/constants/pages.ts",
+        "src/constants/privacy.ts",
+        "src/lib/markdown.ts"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "useImportExtensions": {
+              "level": "error",
+              "options": { "forceJsExtensions": true }
+            }
+          }
+        }
+      }
+    },
+    {
       "includes": ["**/*.astro"],
       "linter": {
         "rules": {

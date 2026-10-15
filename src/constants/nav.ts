@@ -9,3 +9,8 @@ export const NAV: readonly NavItem[] = [
   { label: "Reviews", href: "/#reviews" },
   { label: "Visit", href: "/#visit" },
 ];
+
+export const FOOTER_LINKS: readonly NavItem[] = [
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
+];

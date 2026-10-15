@@ -5,6 +5,7 @@ import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
   site: "https://www.nicolasheaton.uk",
+  trailingSlash: "never",
   fonts: [
     {
       provider: fontProviders.google(),

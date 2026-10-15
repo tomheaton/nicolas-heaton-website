@@ -1,52 +1,19 @@
 ---
 import { Font } from "astro:assets";
-import { DAY_NAMES, HOURS } from "@/constants/content.ts";
 import { OG_IMAGE, SITE } from "@/constants/site.ts";
-import { formatTime24 } from "@/lib/hours.ts";
+import { organizationJsonLd, salonJsonLd } from "@/lib/structured-data.ts";
 import "@/styles/globals.css";
 
 interface Props {
   title?: string;
   description?: string;
+  /** Path of the page's Markdown copy, advertised with `rel="alternate"`. */
+  markdownPath?: string;
 }
 
-const { title = SITE.title, description = SITE.description } = Astro.props;
+const { title = SITE.title, description = SITE.description, markdownPath } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(OG_IMAGE, Astro.site);
-
-const openingHours = Object.entries(HOURS)
-  .map(([day, hours]) => ({ day: Number(day), hours }))
-  .filter((entry) => entry.hours !== null)
-  .map(({ day, hours }) => {
-    const [open, close] = hours as readonly [number, number];
-    return {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: DAY_NAMES[day],
-      opens: formatTime24(open),
-      closes: formatTime24(close),
-    };
-  });
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HairSalon",
-  name: SITE.name,
-  description: SITE.description,
-  image: ogImage.toString(),
-  url: canonical.toString(),
-  telephone: SITE.phoneTel,
-  email: SITE.email,
-  priceRange: "££",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: SITE.addressLine1,
-    addressLocality: SITE.addressLocality,
-    addressRegion: SITE.addressRegion,
-    postalCode: SITE.postcode,
-    addressCountry: "GB",
-  },
-  openingHoursSpecification: openingHours,
-};
 ---
 
 <html lang="en-GB">
@@ -62,6 +29,7 @@ const jsonLd = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/monogram.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    {markdownPath && <link rel="alternate" type="text/markdown" href={markdownPath} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_GB" />
@@ -81,7 +49,8 @@ const jsonLd = {
     <Font cssVariable="--font-outfit" preload />
     <Font cssVariable="--font-syne" preload />
 
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd())} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(salonJsonLd())} />
   </head>
   <body class="font-sans bg-onyx text-ivory">
     <a class="skip" href="#main">Skip to content</a>

@@ -1,0 +1,38 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import NavDrawer from "@/components/NavDrawer.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import Prose from "@/components/Prose.astro";
+import VisitSection from "@/components/VisitSection.astro";
+import { CONTACT_COPY, CONTACT_PAGE } from "@/constants/pages.ts";
+import { SITE } from "@/constants/site.ts";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title={CONTACT_PAGE.title}
+  description={CONTACT_PAGE.description}
+  markdownPath={CONTACT_PAGE.markdownPath}
+>
+  <Nav />
+  <NavDrawer />
+  <main id="main">
+    <PageHeader eyebrow="Contact" title="Contact" lede={CONTACT_COPY.booking} />
+    <Prose light>
+      <h2>Phone</h2>
+      <p>
+        <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>, for bookings and changes to an
+        appointment.
+      </p>
+      <h2>Email</h2>
+      <p>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, for anything that is not a booking.
+      </p>
+      <h2>Address</h2>
+      <p>{CONTACT_COPY.finding}</p>
+    </Prose>
+    <VisitSection />
+  </main>
+  <Footer />
+</BaseLayout>

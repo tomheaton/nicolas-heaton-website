@@ -1,0 +1,35 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import NavDrawer from "@/components/NavDrawer.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import Prose from "@/components/Prose.astro";
+import { PRIVACY_PAGE } from "@/constants/pages.ts";
+import { PRIVACY } from "@/constants/privacy.ts";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title={PRIVACY_PAGE.title}
+  description={PRIVACY_PAGE.description}
+  markdownPath={PRIVACY_PAGE.markdownPath}
+>
+  <Nav />
+  <NavDrawer />
+  <main id="main">
+    <PageHeader eyebrow="Privacy" title="Privacy" lede={PRIVACY_PAGE.description} />
+    <Prose>
+      {
+        PRIVACY.map((section) => (
+          <>
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </>
+        ))
+      }
+    </Prose>
+  </main>
+  <Footer />
+</BaseLayout>

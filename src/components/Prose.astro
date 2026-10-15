@@ -1,0 +1,50 @@
+---
+interface Props {
+  light?: boolean;
+}
+
+const { light = false } = Astro.props;
+---
+
+<section class:list={["section", { light }]}>
+  <div class="wrap">
+    <div class="prose">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .prose {
+    max-width: 68ch;
+    margin-inline: auto;
+  }
+
+  .prose :global(h2) {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    margin: 2.6rem 0 1rem;
+  }
+
+  .prose :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .prose :global(p) {
+    color: color-mix(in srgb, currentColor 82%, transparent);
+  }
+
+  .prose :global(a) {
+    color: var(--color-champagne);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-champagne) 35%, transparent);
+  }
+
+  .prose :global(a:hover) {
+    color: var(--color-brass);
+  }
+
+  .light .prose :global(a) {
+    color: var(--color-brass-deep);
+    border-bottom-color: color-mix(in srgb, var(--color-brass-deep) 40%, transparent);
+  }
+</style>

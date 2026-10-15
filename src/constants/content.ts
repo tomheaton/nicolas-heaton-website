@@ -1,3 +1,15 @@
+export const HERO = {
+  tagline: "Considered hair, cut with precision.",
+  intro:
+    "A calm, unhurried chair where every cut, colour and finish is shaped around you, and built to grow out beautifully. Appointments by phone.",
+} as const;
+
+export const ABOUT = {
+  title: "More than a haircut",
+  lede: "Nicolas Heaton is a small, independent salon in Malmesbury. The aim is hair that looks right on the day and is easy to manage between visits.",
+  body: "Every appointment starts with a consultation, so the cut suits your hair, your routine and how you wear it. No upselling, and the price is confirmed before anything starts.",
+} as const;
+
 export interface Point {
   title: string;
   body: string;
@@ -58,6 +70,12 @@ export const SERVICES: readonly Service[] = [
   },
 ];
 
+export const PRICES_LEDE =
+  "Prices are starting points. Nicolas confirms the price at your consultation, before any work begins.";
+
+export const PRICES_NOTE =
+  "Long or thick hair can take more time and product, which is reflected in the price.";
+
 export interface Review {
   quote: string;
   name: string;
@@ -98,6 +116,11 @@ export const REVIEWS: readonly Review[] = [
     name: "Vee V.",
   },
 ];
+
+export const PARTNERS_TITLE = "The brands on our shelves";
+
+export const PARTNERS_NOTE =
+  "Colour, care, and styling products we use in the chair and sell to take home.";
 
 export interface Partner {
   name: string;

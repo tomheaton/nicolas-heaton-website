@@ -2,6 +2,7 @@
 import Logo from "@/assets/logo.svg";
 import HeroFan from "@/components/HeroFan.astro";
 import Button from "@/components/ui/Button.astro";
+import { HERO } from "@/constants/content.ts";
 import { SITE } from "@/constants/site.ts";
 ---
 
@@ -10,11 +11,8 @@ import { SITE } from "@/constants/site.ts";
   <div class="hero-inner">
     <Logo class="hero-logo" role="img" aria-label="Nicolas Heaton Hairdresser" />
     <p class="eyebrow">Malmesbury, Wiltshire · Est. 2002</p>
-    <h1 class="hero-tag">Considered hair, cut with precision.</h1>
-    <p class="hero-sub">
-      A calm, unhurried chair where every cut, colour and finish is shaped around you, and built
-      to grow out beautifully. Appointments by phone.
-    </p>
+    <h1 class="hero-tag">{HERO.tagline}</h1>
+    <p class="hero-sub">{HERO.intro}</p>
     <div class="hero-cta">
       <Button href={`tel:${SITE.phone}`} variant="solid">
         Call {SITE.phoneDisplay}
